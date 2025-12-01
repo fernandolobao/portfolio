@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  // Optional: Configure images if you use the Next.js Image component
-  images: {
-    unoptimized: true, // Set to true to disable Next.js image optimization, which requires a server
-  },
   async headers() {
     return [
       {
