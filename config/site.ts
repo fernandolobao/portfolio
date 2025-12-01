@@ -1,0 +1,42 @@
+export const siteConfig = {
+  name: "Fernando Camilotti | Developer Portfolio",
+  authorName: "Fernando Camilotti",
+  username: "fernandocamilotti",
+  description:
+    "Fernando Camilotti's portfolio - A modern, responsive Next.js portfolio for developers. This open-source template can be customized to showcase your own skills, projects, and professional experience.",
+  url: "https://almostthere.com",
+  links: {
+    linkedin: "https://www.linkedin.com/in/fernandocamilotti/?locale=en_US",
+    github: "https://github.com/namanbarkiya",
+  },
+  ogImage: "https://res.cloudinary.com/moshpit/image/upload/v1764443208/foto_abuksz.jpg",
+  iconIco:
+    "https://res.cloudinary.com/moshpit/image/upload/v1764443977/1-dcb07074_a4sffg.ico",
+  logoIcon:
+    "https://res.cloudinary.com/moshpit/image/upload/v1764443967/Icon_okurwv.png",
+  keywords: [
+    "Fernando Camilotti",
+    "Full Stack Engineer",
+    "Full Stack Developer",
+    "Design Engineer",
+    "DesignOps Engineer",
+    "Frontend Engineer",
+    "Frontend Developer",
+    "Next.js template",
+    "Modern portfolio website",
+    "Frontend developer portfolio",
+    "Full stack developer portfolio",
+    "Open source portfolio template",
+    "Web developer portfolio template",
+    "Responsive portfolio template",
+    "React.js portfolio",
+    "Tailwind CSS portfolio",
+    "Developer showcase template",
+    "Free portfolio template",
+    "Next.js 13 template",
+    "Shadcn UI template",
+    "Career timeline template",
+    "Portfolio with dark mode",
+    "GitHub portfolio template",
+  ],
+};
