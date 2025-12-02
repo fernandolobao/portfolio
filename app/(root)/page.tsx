@@ -38,7 +38,7 @@ export default function IndexPage() {
     url: siteConfig.url,
     image: siteConfig.ogImage,
     jobTitle: "Full Stack Software Engineer",
-    sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
+    sameAs: [siteConfig.links.linkedin],
   };
 
   // Structured data for website as a software application (template)
