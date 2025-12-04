@@ -111,6 +111,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontHeading.variable
         )}
       >
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TDP74RJL"
+            height="0"
+            width="0"
+            style={{display: "none", visibility: "hidden"}}
+          ></iframe>
+        </noscript>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
