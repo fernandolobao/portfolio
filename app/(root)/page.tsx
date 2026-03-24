@@ -100,7 +100,7 @@ export default function IndexPage() {
           </AnimatedText>
           <div className="mt-4 max-w-[42rem] text-center">
             <p className="leading-normal text-muted-foreground text-sm sm:text-base">
-              I make beatiful things that feel incredible to use. With
+              I make beautiful things that feel incredible to use. With
               experience spanning engineering, UX, and design, I build products
               where performance and usability work together seamlessly.
             </p>
