@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Inter } from "next/font/google";
 import Link from "next/link";
 import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import * as React from "react";
@@ -17,12 +16,6 @@ interface MainNavProps {
   items?: any[];
   children?: React.ReactNode;
 }
-
-const inter = Inter({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 // Animation variants for the navigation items
 const navItemVariants = {
