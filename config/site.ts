@@ -4,7 +4,7 @@ export const siteConfig = {
   username: "fernandocamilotti",
   description:
     "Fernando Camilotti's portfolio - Senior Software Engineer specializing in React, front-end architecture, and design systems. I build fast, intuitive, and scalable web applications.",
-  url: "http://www.fernandocamilotti.com",
+  url: "https://www.fernandocamilotti.com",
   links: {
     linkedin: "https://www.linkedin.com/in/fernandocamilotti/?locale=en_US",
   },

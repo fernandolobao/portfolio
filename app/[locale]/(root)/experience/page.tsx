@@ -4,9 +4,16 @@ import PageContainer from "@/components/common/page-container";
 import Timeline from "@/components/experience/timeline";
 import { experiences } from "@/config/experience";
 import { pagesConfig } from "@/config/pages";
-import { siteConfig } from "@/config/site";
+import { isLocale, type Locale } from "@/lib/i18n/config";
+import { buildAlternates } from "@/lib/i18n/seo";
 
-export const metadata: Metadata = {
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Metadata {
+  const locale = (isLocale(params.locale) ? params.locale : "en") as Locale;
+  return {
   title: `${pagesConfig.experience.metadata.title} | Professional Experience Timeline`,
   description: `${pagesConfig.experience.metadata.description} Explore my professional journey and career milestones in software development.`,
   keywords: [
@@ -16,10 +23,9 @@ export const metadata: Metadata = {
     "developer portfolio",
     "work experience",
   ],
-  alternates: {
-    canonical: `${siteConfig.url}/experience`,
-  },
-};
+  alternates: buildAlternates(locale, "/experience"),
+  };
+}
 
 export default function ExperiencePage() {
   return (

@@ -18,16 +18,23 @@ import { pagesConfig } from "@/config/pages";
 import { featuredProjects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { featuredSkills } from "@/config/skills";
+import { isLocale, type Locale } from "@/lib/i18n/config";
+import { buildAlternates } from "@/lib/i18n/seo";
 import { cn } from "@/lib/utils";
 import profileImg from "@/public/profile-img.jpeg";
 
-export const metadata: Metadata = {
-  title: `${pagesConfig.home.metadata.title} | Fernando Camilotti's Portfolio`,
-  description: `${pagesConfig.home.metadata.description} This open-source Next.js portfolio template is customizable to showcase your skills and projects.`,
-  alternates: {
-    canonical: siteConfig.url,
-  },
-};
+export function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Metadata {
+  const locale = (isLocale(params.locale) ? params.locale : "en") as Locale;
+  return {
+    title: `${pagesConfig.home.metadata.title} | Fernando Camilotti's Portfolio`,
+    description: `${pagesConfig.home.metadata.description} This open-source Next.js portfolio template is customizable to showcase your skills and projects.`,
+    alternates: buildAlternates(locale),
+  };
+}
 
 export default function IndexPage() {
   // Structured data for personal portfolio

@@ -12,9 +12,12 @@ import ChipContainer from "@/components/ui/chip-container";
 import { ResponsiveTabs } from "@/components/ui/responsive-tabs";
 import { experiences } from "@/config/experience";
 import { siteConfig } from "@/config/site";
+import { isLocale, type Locale } from "@/lib/i18n/config";
+import { buildAlternates } from "@/lib/i18n/seo";
 
 interface ExperienceDetailPageProps {
   params: {
+    locale: string;
     expId: string;
   };
 }
@@ -49,9 +52,10 @@ export async function generateMetadata({
   return {
     title: `${experience.position} at ${experience.company} | Experience`,
     description: `Detailed information about my role as ${experience.position} at ${experience.company}.`,
-    alternates: {
-      canonical: `${siteConfig.url}/experience/${params.expId}`,
-    },
+    alternates: buildAlternates(
+      (isLocale(params.locale) ? params.locale : "en") as Locale,
+      `/experience/${params.expId}`
+    ),
   };
 }
 

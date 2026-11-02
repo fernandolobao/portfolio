@@ -1,55 +1,27 @@
 import { MetadataRoute } from "next";
 
 import { siteConfig } from "@/config/site";
+import { defaultLocale, locales } from "@/lib/i18n/config";
+
+const paths = ["", "/skills", "/projects", "/experience", "/education", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.url;
+  const lastModified = new Date();
 
-  // Main pages
-  const routes = [
-    {
-      url: `${baseUrl}`,
-      lastModified: new Date(),
+  return locales.flatMap((locale) =>
+    paths.map((path) => ({
+      url: `${siteConfig.url}/${locale}${path}`,
+      lastModified,
       changeFrequency: "monthly" as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/skills`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/projects`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/experience`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/education`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/resume`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-  ];
-
-  return routes;
+      priority: path === "" ? 1 : 0.8,
+      alternates: {
+        languages: {
+          ...Object.fromEntries(
+            locales.map((l) => [l, `${siteConfig.url}/${l}${path}`])
+          ),
+          "x-default": `${siteConfig.url}/${defaultLocale}${path}`,
+        },
+      },
+    }))
+  );
 }

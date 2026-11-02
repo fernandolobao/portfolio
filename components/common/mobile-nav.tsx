@@ -7,10 +7,15 @@ import { cn } from "@/lib/utils";
 
 interface MobileNavProps {
   items: any[];
+  homeHref?: string;
   children?: React.ReactNode;
 }
 
-export function MobileNav({ items, children }: MobileNavProps) {
+export function MobileNav({
+  items,
+  children,
+  homeHref = "/",
+}: MobileNavProps) {
   useLockBody();
 
   return (
@@ -20,7 +25,7 @@ export function MobileNav({ items, children }: MobileNavProps) {
       )}
     >
       <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href={homeHref} className="flex items-center space-x-2">
           <span className={cn("font-heading", "text-2xl")}>
             {siteConfig.authorName}
           </span>

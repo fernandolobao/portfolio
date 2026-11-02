@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useSelectedLayoutSegment } from "next/navigation";
+import { usePathname } from "next/navigation";
 import * as React from "react";
 
 import { Icons } from "@/components/common/icons";
@@ -14,6 +14,8 @@ import logoImg from "@/public/logo.png";
 
 interface MainNavProps {
   items?: any[];
+  homeHref?: string;
+  menuLabel?: string;
   children?: React.ReactNode;
 }
 
@@ -31,8 +33,12 @@ const navItemVariants = {
   }),
 };
 
-export function MainNav({ items, children }: MainNavProps) {
-  const segment = useSelectedLayoutSegment();
+export function MainNav({
+  items,
+  children,
+  homeHref = "/",
+  menuLabel = "Menu",
+}: MainNavProps) {
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false);
   const pathname = usePathname();
 
@@ -47,7 +53,10 @@ export function MainNav({ items, children }: MainNavProps) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Link href="/" className="hidden items-center space-x-2 md:flex">
+        <Link
+          href={homeHref}
+          className="hidden items-center space-x-2 md:flex"
+        >
           {/* <span className={cn(inter.className, "text-2xl")}>
             {siteConfig.authorName}
           </span> */}
@@ -78,7 +87,7 @@ export function MainNav({ items, children }: MainNavProps) {
                 href={item.disabled ? "#" : item.href}
                 className={cn(
                   "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
-                  item.href.startsWith(`/${segment}`)
+                  pathname === item.href || pathname.startsWith(`${item.href}/`)
                     ? "text-foreground"
                     : "text-foreground/60",
                   item.disabled && "cursor-not-allowed opacity-80"
@@ -97,10 +106,12 @@ export function MainNav({ items, children }: MainNavProps) {
         whileTap={{ scale: 0.95 }}
       >
         {showMobileMenu ? <Icons.close /> : <Icons.menu />}
-        <span className="font-bold">Menu</span>
+        <span className="font-bold">{menuLabel}</span>
       </motion.button>
       {showMobileMenu && items && (
-        <MobileNav items={items}>{children}</MobileNav>
+        <MobileNav items={items} homeHref={homeHref}>
+          {children}
+        </MobileNav>
       )}
     </div>
   );
