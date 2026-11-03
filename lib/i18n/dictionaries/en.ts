@@ -52,7 +52,7 @@ export const en: Dictionary = {
       "I work where code meets design: I've led a design system, set up DesignOps processes and bridged designers and developers in multidisciplinary teams. I enjoy collaborating with developers, designers and stakeholders to deliver high-quality solutions that meet the needs of the people who use them.",
       "Today I'm a Full Stack Engineer at Solvd and Head of UX/UI at Aidron. I'm also pursuing a master's degree in Design at UFRGS (2025–2027).",
     ],
-    photoAlt: "Portrait of Fernando Camilotti, with glasses and a beard, in front of a bookshelf",
+    photoAlt: "Stylized portrait of Fernando Camilotti, with glasses and a beard, on a boat with a harbor and mountains behind him",
     languagesTitle: "Languages",
     languages: [
       { name: "Portuguese", level: "native" },

@@ -2,19 +2,26 @@ import Image from "next/image";
 
 import { Section } from "@/components/site/section";
 import type { Dictionary } from "@/lib/i18n/types";
-import profileImg from "@/public/profile-img.jpeg";
+import aboutPortrait from "@/assets/images/about-portrait.webp";
+import { PortraitStrip } from "@/components/site/portrait-strip";
 
 export function About({ dict }: { dict: Dictionary }) {
   return (
     <Section id="about" index={2} title={dict.about.title}>
       <div className="grid gap-12 md:grid-cols-[300px_1fr] lg:gap-16">
         <div>
-          <Image
-            src={profileImg}
-            alt={dict.about.photoAlt}
-            sizes="(min-width: 768px) 300px, 80vw"
-            className="aspect-square w-full max-w-[300px] rounded-lg border border-border object-cover"
-          />
+          <div
+            className="relative w-full max-w-[300px] overflow-hidden rounded-lg border border-border bg-muted"
+            style={{ paddingTop: "125%" }}
+          >
+            <Image
+              src={aboutPortrait}
+              alt={dict.about.photoAlt}
+              fill
+              sizes="(min-width: 768px) 300px, 80vw"
+              className="object-cover"
+            />
+          </div>
         </div>
         <div>
           <div className="max-w-2xl space-y-5 text-lg">
@@ -35,6 +42,7 @@ export function About({ dict }: { dict: Dictionary }) {
           </dl>
         </div>
       </div>
+      <PortraitStrip />
     </Section>
   );
 }

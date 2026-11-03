@@ -52,7 +52,7 @@ export const ptBR: Dictionary = {
       "Atuo na interseção entre código e design: já liderei um design system, estruturei processos de DesignOps e fiz a ponte entre designers e desenvolvedores em equipes multidisciplinares. Gosto de colaborar com desenvolvedores, designers e stakeholders para entregar soluções de qualidade, que atendam às necessidades de quem as usa.",
       "Hoje sou Full Stack Engineer na Solvd e Chefe de UX/UI na Aidron. Também estou cursando o mestrado em Design na UFRGS (2025–2027).",
     ],
-    photoAlt: "Retrato de Fernando Camilotti, de óculos e barba, diante de uma estante de livros",
+    photoAlt: "Retrato estilizado de Fernando Camilotti, de óculos e barba, em uma embarcação com um porto e montanhas ao fundo",
     languagesTitle: "Idiomas",
     languages: [
       { name: "Português", level: "nativo" },
