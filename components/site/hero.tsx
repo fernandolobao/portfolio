@@ -1,6 +1,6 @@
 import { ArrowDown, MapPin } from "lucide-react";
 
-import { StaticSvg } from "@/components/illustrations/static-svg";
+import { BlackHoleHero } from "@/components/site/black-hole-hero";
 import type { Dictionary } from "@/lib/i18n/types";
 
 export function Hero({ dict }: { dict: Dictionary }) {
@@ -39,7 +39,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
               </a>
             </div>
           </div>
-          <StaticSvg name="hero" className="mx-auto w-full max-w-sm lg:max-w-none" />
+          <BlackHoleHero className="mx-auto w-full max-w-[460px] lg:max-w-none" />
         </div>
 
         <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border md:mt-24 md:grid-cols-4">

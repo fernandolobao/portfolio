@@ -350,7 +350,7 @@ export function SpaceBackdrop() {
       window.removeEventListener("pointerdown", enableMotion);
       window.removeEventListener("scroll", enableMotion);
       window.removeEventListener("keydown", enableMotion);
-      if (hasGpu() && root.current) root.current.dataset.motion = "on";
+      if (hasGpu()) document.documentElement.dataset.motion = "on";
     };
     if (!reduceMotion) {
       window.addEventListener("pointermove", enableMotion, { passive: true });
