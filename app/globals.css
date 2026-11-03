@@ -78,23 +78,87 @@
 }
 
 @layer components {
-  .skills-backdrop {
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  /* ---- Sci-fi backdrop: perspective grid, radar sweep, drifting lights ---- */
+  .scifi-grid-wrap {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 75vh;
+    overflow: hidden;
+    perspective: 520px;
+    perspective-origin: 50% 0%;
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 80%);
+    mask-image: linear-gradient(to top, #000 0%, transparent 80%);
   }
 
-  .skills-backdrop-track {
-    animation-name: skills-scroll;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+  .scifi-grid {
+    position: absolute;
+    left: -60%;
+    right: -60%;
+    top: 0;
+    bottom: -64px;
+    background-image:
+      linear-gradient(hsl(var(--brand) / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--brand) / 0.12) 1px, transparent 1px);
+    background-size: 64px 64px;
+    transform-origin: 50% 0%;
+    transform: rotateX(62deg);
+    animation: scifi-grid 9s linear infinite;
     will-change: transform;
   }
 
+  .scifi-radar {
+    position: absolute;
+    top: -14vw;
+    right: -16vw;
+    width: min(72vw, 1000px);
+    aspect-ratio: 1;
+    border-radius: 9999px;
+    background: repeating-radial-gradient(
+      circle,
+      transparent 0 64px,
+      hsl(var(--brand) / 0.09) 64px 65px
+    );
+    -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 68%);
+    mask-image: radial-gradient(circle, #000 25%, transparent 68%);
+  }
+
+  .scifi-sweep {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg 292deg,
+      hsl(var(--brand) / 0.14) 356deg,
+      transparent 360deg
+    );
+    animation: scifi-spin 40s linear infinite;
+    will-change: transform;
+  }
+
+  .scifi-dot {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 9999px;
+    background: hsl(var(--brand));
+    box-shadow: 0 0 8px 1px hsl(var(--brand) / 0.6);
+    opacity: 0;
+    animation: scifi-float var(--d, 24s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .skills-backdrop-track {
+    .scifi-grid,
+    .scifi-sweep {
       animation: none;
     }
+    .scifi-dot {
+      animation: none;
+      opacity: 0.25;
+    }
   }
+
 
   .section-eyebrow {
     @apply font-heading text-sm font-medium tabular-nums tracking-widest text-brand;
@@ -105,11 +169,35 @@
   }
 }
 
-@keyframes skills-scroll {
+
+@keyframes scifi-grid {
   from {
-    transform: translate3d(0, 0, 0);
+    transform: rotateX(62deg) translateY(0);
   }
   to {
-    transform: translate3d(0, -33.3333%, 0);
+    transform: rotateX(62deg) translateY(64px);
+  }
+}
+
+@keyframes scifi-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scifi-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  80% {
+    opacity: 0.25;
+  }
+  100% {
+    transform: translate3d(0, -180px, 0);
+    opacity: 0;
   }
 }
