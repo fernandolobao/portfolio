@@ -186,14 +186,39 @@ export function SpaceBackdrop() {
       netCtx?.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    interface Node { x: number; y: number; d: number }
+    interface Node { id: string; x: number; y: number; d: number }
+
+    // each link animates from the star nearest the cursor to its neighbour (spark at the tip),
+    // staggered outward from the cursor, and retracts when a star leaves the cursor's reach
+    interface Link { a: string; b: string; p: number; target: 0 | 1; born: number }
+    const links = new Map<string, Link>();
+    const nodeBirth = new Map<string, number>();
+    let lastDraw = 0;
+    const LINK_IN_MS = 240;
+    const LINK_OUT_MS = 190;
+    const RIPPLE_MS = 170;
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    const starPos = (id: string) => {
+      const far = id[0] === "f";
+      const star = (far ? starsRef.far : starsRef.near)[Number(id.slice(1))];
+      if (!star) return null;
+      const f = far ? PARALLAX.far : PARALLAX.near;
+      return { x: star.x + cx * f[0] - MARGIN, y: star.y + cy * f[1] - MARGIN };
+    };
 
     const drawNet = (now: number) => {
       const c = netCanvas.current;
       if (!c || !netCtx) return;
       const ctx = netCtx;
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      if (intensity < 0.01) return;
+      if (intensity < 0.01) {
+        links.clear();
+        nodeBirth.clear();
+        lastDraw = 0;
+        return;
+      }
+      const dt = lastDraw ? Math.min(now - lastDraw, 50) : 16;
+      lastDraw = now;
 
       const dark = document.documentElement.classList.contains("dark");
       const rgb = dark ? "196, 214, 255" : "52, 60, 96";
@@ -201,22 +226,21 @@ export function SpaceBackdrop() {
 
       // gather stars (at their parallax-shifted screen position) near the cursor
       const nodes: Node[] = [];
-      const collect = (list: Star[], f: readonly [number, number]) => {
+      const collect = (list: Star[], prefix: string, f: readonly [number, number]) => {
         const ox = cx * f[0] - MARGIN;
         const oy = cy * f[1] - MARGIN;
-        for (const star of list) {
+        list.forEach((star, index) => {
           const x = star.x + ox;
           const y = star.y + oy;
           const d = Math.hypot(x - mx, y - my);
-          if (d < REACH) nodes.push({ x, y, d });
-        }
+          if (d < REACH) nodes.push({ id: prefix + index, x, y, d });
+        });
       };
-      collect(starsRef.far, PARALLAX.far);
-      collect(starsRef.near, PARALLAX.near);
+      collect(starsRef.far, "f", PARALLAX.far);
+      collect(starsRef.near, "n", PARALLAX.near);
 
-      // each star links to its two closest neighbours
-      ctx.lineWidth = 0.8;
-      const seen = new Set<string>();
+      // each star links to its two closest neighbours -> the set of wanted links
+      const desired = new Map<string, [number, number]>();
       for (let i = 0; i < nodes.length; i++) {
         const near: { j: number; dist: number }[] = [];
         for (let j = 0; j < nodes.length; j++) {
@@ -224,30 +248,94 @@ export function SpaceBackdrop() {
           const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
           if (dist < LINK) near.push({ j, dist });
         }
-        near.sort((a, b) => a.dist - b.dist);
+        near.sort((p, q) => p.dist - q.dist);
         for (const { j } of near.slice(0, 2)) {
-          const key = i < j ? `${i}-${j}` : `${j}-${i}`;
-          if (seen.has(key)) continue;
-          seen.add(key);
-          const f = 1 - (nodes[i].d + nodes[j].d) / 2 / REACH;
-          ctx.strokeStyle = `rgba(${rgb}, ${(0.3 * k * Math.pow(Math.max(f, 0), 1.2)).toFixed(3)})`;
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.stroke();
+          const ia = nodes[i].id;
+          const ib = nodes[j].id;
+          desired.set(ia < ib ? `${ia}|${ib}` : `${ib}|${ia}`, [i, j]);
         }
       }
 
+      // new links start at the star nearest the cursor (delay grows with distance => ripple)
+      desired.forEach(([i, j], key) => {
+        const existing = links.get(key);
+        if (existing) {
+          existing.target = 1;
+          return;
+        }
+        const first = nodes[i].d <= nodes[j].d ? nodes[i] : nodes[j];
+        const second = first === nodes[i] ? nodes[j] : nodes[i];
+        links.set(key, {
+          a: first.id,
+          b: second.id,
+          p: 0,
+          target: 1,
+          born: now + (first.d / REACH) * RIPPLE_MS,
+        });
+      });
+      links.forEach((link, key) => {
+        if (!desired.has(key)) link.target = 0;
+      });
+
+      // advance and draw: each line grows from its first star toward the second, with a spark at the tip
+      ctx.lineWidth = 0.8;
+      links.forEach((link, key) => {
+        if (link.target === 1 && now < link.born) return;
+        link.p += link.target === 1 ? dt / LINK_IN_MS : -dt / LINK_OUT_MS;
+        if (link.p > 1) link.p = 1;
+        if (link.p <= 0) {
+          if (link.target === 0) links.delete(key);
+          else link.p = 0;
+          return;
+        }
+        const pa = starPos(link.a);
+        const pb = starPos(link.b);
+        if (!pa || !pb) {
+          links.delete(key);
+          return;
+        }
+        const da = Math.hypot(pa.x - mx, pa.y - my);
+        const db = Math.hypot(pb.x - mx, pb.y - my);
+        const f = Math.max(1 - (da + db) / 2 / REACH, 0.18 * link.p);
+        const e = easeOut(link.p);
+        const ex = pa.x + (pb.x - pa.x) * e;
+        const ey = pa.y + (pb.y - pa.y) * e;
+        ctx.strokeStyle = `rgba(${rgb}, ${(0.3 * k * Math.pow(f, 1.2)).toFixed(3)})`;
+        ctx.beginPath();
+        ctx.moveTo(pa.x, pa.y);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+        if (link.target === 1 && link.p < 1) {
+          const glow = Math.min(1, f * 2.2) * k;
+          ctx.fillStyle = `rgba(${rgb}, ${(0.16 * glow).toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(ex, ey, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = `rgba(${rgb}, ${(0.75 * glow).toFixed(3)})`;
+          ctx.beginPath();
+          ctx.arc(ex, ey, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+
       // node rings
       let nearest: Node | null = null;
+      const present = new Set<string>();
       for (const n of nodes) {
+        present.add(n.id);
+        if (!nodeBirth.has(n.id)) nodeBirth.set(n.id, now);
+        const appear = Math.min(1, (now - (nodeBirth.get(n.id) ?? now)) / 260);
         if (!nearest || n.d < nearest.d) nearest = n;
-        const f = 1 - n.d / REACH;
+        const f = (1 - n.d / REACH) * appear;
         ctx.strokeStyle = `rgba(${rgb}, ${(0.32 * k * f).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(n.x, n.y, 3.2, 0, Math.PI * 2);
         ctx.stroke();
       }
+
+      nodeBirth.forEach((_, id) => {
+        if (!present.has(id)) nodeBirth.delete(id);
+      });
 
       // target-lock brackets on the closest star + guide line to the cursor
       if (nearest && nearest.d < 80) {
@@ -297,7 +385,7 @@ export function SpaceBackdrop() {
       my += (py - my) * 0.22;
       intensity += ((active ? 1 : 0) - intensity) * (active ? 0.1 : 0.05);
       drawNet(now);
-      netFrame = active || intensity > 0.01 ? requestAnimationFrame(netTick) : 0;
+      netFrame = active || intensity > 0.01 || links.size > 0 ? requestAnimationFrame(netTick) : 0;
       if (!netFrame && netCtx) {
         netCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       }
