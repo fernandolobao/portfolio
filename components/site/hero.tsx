@@ -1,13 +1,17 @@
 import { ArrowDown, MapPin } from "lucide-react";
 
-import { BlackHoleHero } from "@/components/site/black-hole-hero";
+import { BlackHoleBackdrop } from "@/components/site/black-hole-backdrop";
 import type { Dictionary } from "@/lib/i18n/types";
 
 export function Hero({ dict }: { dict: Dictionary }) {
   return (
-    <section aria-labelledby="hero-title" className="pb-20 pt-14 md:pb-28 md:pt-24">
-      <div className="container">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr]">
+    <section
+      aria-labelledby="hero-title"
+      className="relative overflow-hidden pb-20 pt-14 md:pb-28 md:pt-24"
+    >
+      <BlackHoleBackdrop />
+      <div className="container relative z-10">
+        <div className="max-w-2xl">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-sm text-muted-foreground">
               <MapPin className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
@@ -39,7 +43,6 @@ export function Hero({ dict }: { dict: Dictionary }) {
               </a>
             </div>
           </div>
-          <BlackHoleHero className="mx-auto w-full max-w-[460px] lg:max-w-none" />
         </div>
 
         <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border md:mt-24 md:grid-cols-4">

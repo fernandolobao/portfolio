@@ -53,8 +53,8 @@
     --space-alpha: 0.1;
     --space-star-opacity: 0.9;
     --hole: 198 92% 64%;
-    --hole-line-opacity: 0.9;
-    --hole-fill-opacity: 0.032;
+    --hole-line-opacity: 1;
+    --hole-fill-opacity: 0.035;
   }
 
   * {
@@ -94,10 +94,46 @@
 }
 
 @layer components {
-  /* ---- Triangular black hole hero ---- */
+  /* ---- Triangular black hole: full-width hero backdrop ---- */
+  /* keeps the text column calm (left) and fades into the next section (bottom) */
+  .hole-fade {
+    -webkit-mask-image:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.28) 30%, #000 62%),
+      linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.28) 30%, #000 62%),
+      linear-gradient(180deg, #000 0%, #000 70%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  @media (max-width: 767px) {
+    .hole-fade {
+      -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.18) 38%, #000 64%, #000 80%, transparent 100%);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.18) 38%, #000 64%, #000 80%, transparent 100%);
+    }
+  }
+
+  .hole-stage {
+    position: absolute;
+    left: 68%;
+    top: 47%;
+    width: max(150vw, 1100px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 767px) {
+    .hole-stage {
+      left: 50%;
+      top: 66%;
+      width: max(250vw, 900px);
+    }
+  }
+
   .hole-mask {
-    -webkit-mask-image: radial-gradient(closest-side, transparent 2%, #000 18%, #000 66%, transparent 100%);
-    mask-image: radial-gradient(closest-side, transparent 2%, #000 18%, #000 66%, transparent 100%);
+    -webkit-mask-image: radial-gradient(closest-side, transparent 2%, #000 15%, #000 70%, transparent 100%);
+    mask-image: radial-gradient(closest-side, transparent 2%, #000 15%, #000 70%, transparent 100%);
   }
 
   .hole-mask svg,
@@ -110,8 +146,15 @@
   .hole-lines {
     fill: hsl(var(--hole) / var(--hole-fill-opacity));
     stroke: hsl(var(--hole) / var(--hole-line-opacity));
-    stroke-width: 1.5;
+    stroke-width: 1.3px;
     stroke-linejoin: round;
+  }
+
+  .hole-lines polygon,
+  .hole-void,
+  .hole-rim-mid,
+  .hole-rim-soft {
+    vector-effect: non-scaling-stroke;
   }
 
   .hole-spin {
@@ -125,8 +168,8 @@
 
   .hole-glow {
     background:
-      radial-gradient(circle at 50% 50%, hsl(var(--brand) / 0.22) 0, transparent 13%),
-      radial-gradient(circle at 50% 50%, hsl(var(--hole) / 0.16) 0, transparent 52%);
+      radial-gradient(circle at 50% 50%, hsl(var(--brand) / 0.28) 0, transparent 9%),
+      radial-gradient(circle at 50% 50%, hsl(var(--hole) / 0.2) 0, transparent 45%);
   }
 
   [data-motion="on"] .hole-glow {
@@ -136,21 +179,21 @@
   .hole-void {
     fill: hsl(var(--background));
     stroke: hsl(var(--brand));
-    stroke-width: 1.4;
+    stroke-width: 1.6px;
     stroke-linejoin: round;
   }
 
   .hole-rim-mid {
     fill: none;
-    stroke: hsl(var(--brand) / 0.28);
-    stroke-width: 4;
+    stroke: hsl(var(--brand) / 0.3);
+    stroke-width: 5px;
     stroke-linejoin: round;
   }
 
   .hole-rim-soft {
     fill: none;
     stroke: hsl(var(--brand) / 0.12);
-    stroke-width: 10;
+    stroke-width: 16px;
     stroke-linejoin: round;
   }
 
