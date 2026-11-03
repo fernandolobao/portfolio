@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { StaticSvg } from "@/components/illustrations/static-svg";
+import { HeroBackdrop } from "@/components/site/hero-backdrop";
 import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { formatYears } from "@/lib/format";
@@ -117,7 +118,7 @@ export default function CaseStudyPage({
   };
 
   return (
-    <article className="mx-auto w-full max-w-4xl px-5 pb-24 pt-10 sm:px-8 md:pt-16">
+    <article>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -125,25 +126,42 @@ export default function CaseStudyPage({
         }}
       />
 
-      <a
-        href={`${home}#work`}
-        className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+      {/* header over the same render used in the home hero (poster first, video on interaction with a GPU) */}
+      <section
+        aria-labelledby="case-title"
+        className="relative overflow-hidden pb-14 pt-0 md:pb-20 xl:pt-16"
       >
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-        {labels.back}
-      </a>
+        <HeroBackdrop focusY="36%" />
+        <div className="container relative z-10 pt-8 xl:pt-0">
+          <div className="max-w-2xl">
+            <a
+              href={`${home}#work`}
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+              {labels.back}
+            </a>
 
-      <header className="mt-8">
-        <p className="section-eyebrow">{labels.eyebrow}</p>
-        <h1 className="mt-3 font-heading text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
-          {text.name}
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          {text.role} · {formatYears(project.startDate.getUTCFullYear(), project.endDate.getUTCFullYear())}
-        </p>
-        <p className="mt-8 max-w-3xl text-xl text-foreground/90 md:text-2xl">{detail.lead}</p>
-      </header>
+            <header className="mt-8">
+              <p className="section-eyebrow">{labels.eyebrow}</p>
+              <h1
+                id="case-title"
+                className="mt-3 font-heading text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl"
+              >
+                {text.name}
+              </h1>
+              <p className="mt-3 text-muted-foreground">
+                {text.role} ·{" "}
+                {formatYears(project.startDate.getUTCFullYear(), project.endDate.getUTCFullYear())}
+              </p>
+              <p className="mt-8 max-w-xl text-xl text-foreground/90">{detail.lead}</p>
+            </header>
+          </div>
+        </div>
+      </section>
 
+      <div className="container pb-24">
+        <div className="max-w-4xl">
       <div
         className="relative mt-12 w-full overflow-hidden rounded-lg border border-border bg-muted"
         style={{ paddingTop: "62.5%" }}
@@ -238,6 +256,8 @@ export default function CaseStudyPage({
           </ul>
         </section>
       ) : null}
+        </div>
+      </div>
     </article>
   );
 }
