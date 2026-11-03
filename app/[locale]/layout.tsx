@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 
 import { Analytics } from "@/components/common/analytics";
 import { ThemeProvider } from "@/components/common/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
 import {
   defaultLocale,
@@ -17,7 +16,6 @@ import {
 } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { cn } from "@/lib/utils";
-import { ModalProvider } from "@/providers/modal-provider";
 
 const fontSans = localFont({
   src: [
@@ -138,24 +136,9 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
             style={{display: "none", visibility: "hidden"}}
           ></iframe>
         </noscript>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          themes={[
-            "light",
-            "dark",
-            "retro",
-            "cyberpunk",
-            "paper",
-            "aurora",
-            "synthwave",
-          ]}
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} themes={["light", "dark"]}>
           {children}
           <Analytics />
-          <Toaster />
-          <ModalProvider />
         </ThemeProvider>
       </body>
       {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}

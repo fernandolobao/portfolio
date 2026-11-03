@@ -2,7 +2,7 @@ export const locales = ["pt-BR", "en", "es"] as const;
 export type Locale = (typeof locales)[number];
 
 /** Used for `x-default` hreflang and when the browser language matches nothing. */
-export const defaultLocale: Locale = "en";
+export const defaultLocale: Locale = "pt-BR";
 
 export const LOCALE_COOKIE = "NEXT_LOCALE";
 
