@@ -3,10 +3,11 @@ import type { Dictionary } from "../types";
 export const en: Dictionary = {
   meta: {
     siteName: "Fernando Camilotti",
-    title: "Fernando Camilotti — Software Engineer & Designer",
+    title: "Fernando Camilotti — Software Engineer & UX Designer",
     description:
-      "Software engineer and designer in Porto Alegre, Brazil. 10+ years building fast, accessible and consistent web products and design systems at the intersection of engineering and UX.",
+      "Software engineer and UX designer in Porto Alegre, Brazil. 15+ years building fast, accessible and consistent web products and design systems.",
     jobTitle: "Software Engineer and UX Designer",
+    ogAlt: "Fernando Camilotti, software engineer and UX designer: headline over a triangular tunnel of blue and white light",
   },
   nav: {
     work: "Work",
@@ -28,13 +29,13 @@ export const en: Dictionary = {
     location: "Porto Alegre, Brazil",
     title: "Software engineer and designer.",
     subtitle:
-      "10+ years building web products and design systems. I combine engineering and UX to ship fast, accessible and consistent interfaces.",
+      "15+ years building web products and design systems. I combine engineering and UX to ship fast, accessible and consistent interfaces.",
     current: "Now: Full Stack Engineer at Solvd · Head of UX/UI at Aidron",
     ctaWork: "See my work",
     ctaContact: "Get in touch",
   },
   metrics: [
-    { value: "10+", label: "years in web development and UX" },
+    { value: "15+", label: "years in web development and UX" },
     { value: "30+", label: "reusable components in a design system" },
     { value: "300+", label: "daily users of an integrated data system" },
     { value: "2", label: "design systems built from scratch" },
@@ -48,7 +49,7 @@ export const en: Dictionary = {
   about: {
     title: "About",
     paragraphs: [
-      "I'm a senior software engineer and UX specialist with over 10 years of experience in web development and user experience design. My background spans Graphic Design, an MBA in IT Governance, a technologist degree in Big Data and Analytical Intelligence, and a postgraduate degree in UX Design.",
+      "I'm a senior software engineer and UX specialist with over 15 years of experience in web development and user experience design. My background spans Graphic Design, an MBA in IT Governance, a technologist degree in Big Data and Analytical Intelligence, and a postgraduate degree in UX Design.",
       "I work where code meets design: I've led a design system, set up DesignOps processes and bridged designers and developers in multidisciplinary teams. I enjoy collaborating with developers, designers and stakeholders to deliver high-quality solutions that meet the needs of the people who use them.",
       "Today I'm a Full Stack Engineer at Solvd and Head of UX/UI at Aidron. I'm also pursuing a master's degree in Design at UFRGS (2025–2027).",
     ],
@@ -74,7 +75,7 @@ export const en: Dictionary = {
   },
   experience: {
     title: "Experience",
-    intro: "10+ years across software engineering, interface design and UX/UI leadership.",
+    intro: "15+ years across software engineering, interface design and UX/UI leadership.",
     earlierTitle: "Earlier",
     items: {
       solvd: { position: "Full Stack Engineer" },

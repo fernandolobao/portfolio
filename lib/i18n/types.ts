@@ -29,6 +29,7 @@ export interface Dictionary {
     title: string;
     description: string;
     jobTitle: string;
+    ogAlt: string;
   };
   nav: {
     work: string;

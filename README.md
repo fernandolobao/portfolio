@@ -42,7 +42,13 @@ Para adicionar um projeto: crie a entrada em `config/projects.ts` e o texto corr
 - Rotas `/pt-BR`, `/en` e `/es`. Quem acessa `/` é redirecionado pelo cookie `NEXT_LOCALE` e depois pelo `Accept-Language`; o padrão é `pt-BR` (`lib/i18n/config.ts`).
 - Cada página tem canonical, hreflang (`pt-BR`, `en`, `es`, `x-default`), Open Graph, Twitter cards e JSON-LD `Person`.
 - `sitemap.xml` e `robots.txt` são gerados (`app/sitemap.ts`, `app/robots.ts`).
-- A imagem de abertura (OG/Twitter) é gerada por idioma em `app/[locale]/opengraph-image.tsx`.
+- A imagem de compartilhamento (OG/Twitter) é um JPEG estático por idioma em `public/og/` (1200×630, menos de 300 KB para o WhatsApp não descartar), com texto alternativo localizado. Para regenerar depois de mudar o texto ou o hero:
+
+  ```bash
+  pip install pillow fonttools brotli numpy
+  python scripts/og/generate.py      # lê scripts/og/copy.json e public/hero/hole-poster-1600.webp
+  ```
+- Dados estruturados (JSON-LD) em um único grafo: `WebSite`, `ProfilePage` (por idioma) e `Person`.
 
 ## Ilustrações
 

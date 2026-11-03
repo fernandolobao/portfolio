@@ -1,0 +1,20 @@
+{
+  "pt-BR": {
+    "title": "Engenheiro de software e designer.",
+    "name": "Fernando Camilotti",
+    "line": "Mais de 15 anos de experiência · Porto Alegre, Brasil",
+    "chips": ["Design Systems", "UX/UI", "Full Stack"]
+  },
+  "en": {
+    "title": "Software engineer and designer.",
+    "name": "Fernando Camilotti",
+    "line": "15+ years of experience · Porto Alegre, Brazil",
+    "chips": ["Design Systems", "UX/UI", "Full Stack"]
+  },
+  "es": {
+    "title": "Ingeniero de software y diseñador.",
+    "name": "Fernando Camilotti",
+    "line": "Más de 15 años de experiencia · Porto Alegre, Brasil",
+    "chips": ["Design Systems", "UX/UI", "Full Stack"]
+  }
+}

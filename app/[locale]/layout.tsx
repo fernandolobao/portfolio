@@ -57,6 +57,15 @@ export function generateMetadata({ params }: { params: { locale: string } }) {
   );
   languages["x-default"] = localizePath(defaultLocale);
 
+  // Static, pre-rendered share image per language (JPEG < 300 KB so WhatsApp keeps it).
+  const shareImage = {
+    url: `/og/og-${locale}.jpg`,
+    width: 1200,
+    height: 630,
+    type: "image/jpeg",
+    alt: dict.meta.ogAlt,
+  };
+
   return {
     metadataBase: new URL(siteConfig.url),
     title: {
@@ -76,12 +85,16 @@ export function generateMetadata({ params }: { params: { locale: string } }) {
       title: dict.meta.title,
       description: dict.meta.description,
       siteName: dict.meta.siteName,
+      images: [shareImage],
     },
     twitter: {
       card: "summary_large_image",
       title: dict.meta.title,
       description: dict.meta.description,
+      images: [{ url: shareImage.url, alt: shareImage.alt }],
     },
+    applicationName: dict.meta.siteName,
+    category: "technology",
     alternates: {
       canonical: localizePath(locale),
       languages,
