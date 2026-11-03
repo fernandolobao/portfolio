@@ -36,8 +36,8 @@ export const ptBR: Dictionary = {
   },
   metrics: [
     { value: "10+", label: "anos em desenvolvimento web e UX" },
-    { value: "30+", label: "componentes reutilizáveis no design system Ragnarök" },
-    { value: "300+", label: "usuários diários de um sistema integrado na Renner" },
+    { value: "30+", label: "componentes reutilizáveis em um design system" },
+    { value: "300+", label: "usuários diários em um sistema integrado de dados" },
     { value: "2", label: "design systems criados do zero" },
   ],
   work: {

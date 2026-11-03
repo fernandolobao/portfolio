@@ -36,8 +36,8 @@ export const en: Dictionary = {
   },
   metrics: [
     { value: "10+", label: "years in web development and UX" },
-    { value: "30+", label: "reusable components in the Ragnarök design system" },
-    { value: "300+", label: "daily users of an integrated system at Renner" },
+    { value: "30+", label: "reusable components in a design system" },
+    { value: "300+", label: "daily users of an integrated data system" },
     { value: "2", label: "design systems built from scratch" },
   ],
   work: {

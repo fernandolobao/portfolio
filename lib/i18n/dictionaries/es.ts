@@ -36,8 +36,8 @@ export const es: Dictionary = {
   },
   metrics: [
     { value: "10+", label: "años en desarrollo web y UX" },
-    { value: "30+", label: "componentes reutilizables en el design system Ragnarök" },
-    { value: "300+", label: "usuarios diarios de un sistema integrado en Renner" },
+    { value: "30+", label: "componentes reutilizables en un design system" },
+    { value: "300+", label: "usuarios diarios de un sistema integrado de datos" },
     { value: "2", label: "design systems creados desde cero" },
   ],
   work: {
