@@ -20,8 +20,8 @@
     --brand: 83 77% 22%;
     --brand-foreground: 60 14% 98%;
 
-    --space-a: 240 70% 62%;
-    --space-b: 280 60% 66%;
+    --space-a: 192 70% 56%;
+    --space-b: 140 55% 50%;
     --space-alpha: 0.09;
     --space-star-opacity: 0.45;
 
@@ -45,8 +45,8 @@
     --brand: 74 84% 68%;
     --brand-foreground: 0 0% 5%;
 
-    --space-a: 232 80% 58%;
-    --space-b: 268 70% 60%;
+    --space-a: 192 85% 46%;
+    --space-b: 150 70% 42%;
     --space-alpha: 0.1;
     --space-star-opacity: 0.9;
   }
