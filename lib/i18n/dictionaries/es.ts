@@ -3,10 +3,11 @@ import type { Dictionary } from "../types";
 export const es: Dictionary = {
   meta: {
     siteName: "Fernando Camilotti",
-    title: "Fernando Camilotti — Ingeniero de Software y Diseñador",
+    title: "Fernando Camilotti — Ingeniero de Software y Diseñador UX",
     description:
-      "Ingeniero de software y diseñador en Porto Alegre, Brasil. Más de 10 años creando productos web y design systems rápidos, accesibles y consistentes, entre ingeniería y UX.",
+      "Ingeniero de software y diseñador UX en Porto Alegre, Brasil. Más de 15 años creando productos web y design systems rápidos, accesibles y consistentes.",
     jobTitle: "Ingeniero de Software y Diseñador UX",
+    ogAlt: "Fernando Camilotti, ingeniero de software y diseñador UX: titular sobre un túnel triangular de luz azul y blanca",
   },
   nav: {
     work: "Trabajos",
@@ -28,13 +29,13 @@ export const es: Dictionary = {
     location: "Porto Alegre, Brasil",
     title: "Ingeniero de software y diseñador.",
     subtitle:
-      "Más de 10 años creando productos web y design systems. Combino ingeniería y UX para entregar interfaces rápidas, accesibles y consistentes.",
+      "Más de 15 años creando productos web y design systems. Combino ingeniería y UX para entregar interfaces rápidas, accesibles y consistentes.",
     current: "Hoy: Full Stack Engineer en Solvd · Head de UX/UI en Aidron",
     ctaWork: "Ver trabajos",
     ctaContact: "Ponerse en contacto",
   },
   metrics: [
-    { value: "10+", label: "años en desarrollo web y UX" },
+    { value: "15+", label: "años en desarrollo web y UX" },
     { value: "30+", label: "componentes reutilizables en un design system" },
     { value: "300+", label: "usuarios diarios de un sistema integrado de datos" },
     { value: "2", label: "design systems creados desde cero" },
@@ -48,7 +49,7 @@ export const es: Dictionary = {
   about: {
     title: "Sobre mí",
     paragraphs: [
-      "Soy ingeniero de software sénior y especialista en UX, con más de 10 años de experiencia en desarrollo web y diseño de experiencia de usuario. Mi formación incluye Diseño Gráfico, un MBA en Gobernanza de TI, una tecnicatura en Big Data e Inteligencia Analítica y una especialización en UX Design.",
+      "Soy ingeniero de software sénior y especialista en UX, con más de 15 años de experiencia en desarrollo web y diseño de experiencia de usuario. Mi formación incluye Diseño Gráfico, un MBA en Gobernanza de TI, una tecnicatura en Big Data e Inteligencia Analítica y una especialización en UX Design.",
       "Trabajo en la intersección entre código y diseño: he liderado un design system, organizado procesos de DesignOps y servido de puente entre diseñadores y desarrolladores en equipos multidisciplinarios. Disfruto colaborar con desarrolladores, diseñadores y stakeholders para entregar soluciones de calidad que respondan a las necesidades de quienes las usan.",
       "Hoy soy Full Stack Engineer en Solvd y Head de UX/UI en Aidron. También curso una maestría en Diseño en la UFRGS (2025–2027).",
     ],
@@ -74,7 +75,7 @@ export const es: Dictionary = {
   },
   experience: {
     title: "Experiencia",
-    intro: "Más de 10 años entre ingeniería de software, diseño de interfaces y liderazgo de UX/UI.",
+    intro: "Más de 15 años entre ingeniería de software, diseño de interfaces y liderazgo de UX/UI.",
     earlierTitle: "Antes",
     items: {
       solvd: { position: "Full Stack Engineer" },

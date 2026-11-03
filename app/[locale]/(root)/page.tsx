@@ -30,8 +30,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const { locale } = params;
   const dict = getDictionary(locale);
 
-  const personSchema = {
-    "@context": "https://schema.org",
+  const personNode = {
     "@type": "Person",
     "@id": `${siteConfig.url}/#person`,
     name: "Fernando Camilotti Monteiro",
@@ -60,12 +59,48 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     sameAs: [SocialLinks.linkedin, SocialLinks.github, SocialLinks.lattes],
   };
 
+  const pageUrl = `${siteConfig.url}${localizePath(locale)}`;
+  const personRef = { "@id": `${siteConfig.url}/#person` };
+
+  // One graph: the site, this profile page (per language) and the person it is about.
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteConfig.url}/#website`,
+        url: `${siteConfig.url}/`,
+        name: dict.meta.siteName,
+        inLanguage: ["pt-BR", "en", "es"],
+        publisher: personRef,
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": `${pageUrl}#profilepage`,
+        url: pageUrl,
+        name: dict.meta.title,
+        description: dict.meta.description,
+        inLanguage: locale,
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        about: personRef,
+        mainEntity: personRef,
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: `${siteConfig.url}/og/og-${locale}.jpg`,
+          width: 1200,
+          height: 630,
+        },
+      },
+      personNode,
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personSchema).replace(/</g, "\\u003c"),
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
         }}
       />
       <Hero dict={dict} />
