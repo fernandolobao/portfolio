@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { hasGpu } from "@/lib/has-gpu";
+
 /**
  * Decorative "deep space" background, built to be cheap and faint:
  * - two star fields (tiny far stars, a few larger near ones) drawn once into
@@ -103,21 +105,6 @@ function twinkleShadows(seed: number, count: number) {
 
 const TWINKLE_A = twinkleShadows(97, 9);
 const TWINKLE_B = twinkleShadows(131, 9);
-
-/** WebGL as a proxy for "has a GPU": software renderers make animation costly. */
-function hasGpu(): boolean {
-  try {
-    const probe = document.createElement("canvas");
-    const gl = probe.getContext("webgl") as WebGLRenderingContext | null;
-    if (!gl) return false;
-    const info = gl.getExtension("WEBGL_debug_renderer_info");
-    const renderer = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : "";
-    gl.getExtension("WEBGL_lose_context")?.loseContext();
-    return !/swiftshader|llvmpipe|software|basic render/i.test(renderer);
-  } catch {
-    return false;
-  }
-}
 
 export function SpaceBackdrop() {
   const root = useRef<HTMLDivElement>(null);
@@ -350,7 +337,7 @@ export function SpaceBackdrop() {
       window.removeEventListener("pointerdown", enableMotion);
       window.removeEventListener("scroll", enableMotion);
       window.removeEventListener("keydown", enableMotion);
-      if (hasGpu() && root.current) root.current.dataset.motion = "on";
+      if (hasGpu()) document.documentElement.dataset.motion = "on";
     };
     if (!reduceMotion) {
       window.addEventListener("pointermove", enableMotion, { passive: true });
