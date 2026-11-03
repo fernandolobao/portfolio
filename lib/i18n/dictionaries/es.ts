@@ -75,7 +75,7 @@ export const es: Dictionary = {
   },
   experience: {
     title: "Experiencia",
-    intro: "De diseñador web becario a ingeniero sénior y líder de UX/UI.",
+    intro: "Más de 10 años entre ingeniería de software, diseño de interfaces y liderazgo de UX/UI.",
     earlierTitle: "Antes",
     items: {
       solvd: { position: "Full Stack Engineer" },
@@ -139,10 +139,6 @@ export const es: Dictionary = {
       zerohora: {
         position: "Web Developer",
         oneLiner: "Infografías interactivas, viñetas en video y patrones gráficos para un portal de noticias.",
-      },
-      "cpd-ufrgs": {
-        position: "Diseñador web (becario)",
-        oneLiner: "Primer trabajo con web, en el Centro de Procesamiento de Datos de la UFRGS.",
       },
     },
   },

@@ -75,7 +75,7 @@ export const ptBR: Dictionary = {
   },
   experience: {
     title: "Experiência",
-    intro: "De webdesigner bolsista a engenheiro sênior e líder de UX/UI.",
+    intro: "Mais de 10 anos entre engenharia de software, design de interfaces e liderança de UX/UI.",
     earlierTitle: "Antes",
     items: {
       solvd: { position: "Full Stack Engineer" },
@@ -139,10 +139,6 @@ export const ptBR: Dictionary = {
       zerohora: {
         position: "Web Developer",
         oneLiner: "Infográficos interativos, vinhetas e padrões gráficos para o portal de notícias.",
-      },
-      "cpd-ufrgs": {
-        position: "Webdesigner (bolsista)",
-        oneLiner: "Primeiro trabalho com web, no Centro de Processamento de Dados da UFRGS.",
       },
     },
   },

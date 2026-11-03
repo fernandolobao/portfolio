@@ -103,12 +103,4 @@ export const experiences: ExperienceInterface[] = [
     featured: false,
     skills: [],
   },
-  {
-    id: "cpd-ufrgs",
-    company: "CPD UFRGS",
-    startDate: new Date("2007-01-01"),
-    endDate: new Date("2009-12-01"),
-    featured: false,
-    skills: [],
-  },
 ];

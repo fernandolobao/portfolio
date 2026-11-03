@@ -75,7 +75,7 @@ export const en: Dictionary = {
   },
   experience: {
     title: "Experience",
-    intro: "From scholarship web designer to senior engineer and UX/UI lead.",
+    intro: "10+ years across software engineering, interface design and UX/UI leadership.",
     earlierTitle: "Earlier",
     items: {
       solvd: { position: "Full Stack Engineer" },
@@ -139,10 +139,6 @@ export const en: Dictionary = {
       zerohora: {
         position: "Web Developer",
         oneLiner: "Interactive infographics, video intros and graphic patterns for a news website.",
-      },
-      "cpd-ufrgs": {
-        position: "Web Designer (scholarship)",
-        oneLiner: "First web job, at the UFRGS Data Processing Center.",
       },
     },
   },
