@@ -1,73 +1,21 @@
-import { ValidSkills } from "./constants";
-
-export interface educationInterface {
+/**
+ * Language-neutral education data. Degree names and details live in
+ * `lib/i18n/dictionaries`, keyed by `id`.
+ */
+export interface EducationInterface {
+  id: string;
   institution: string;
-  degree: string;
-  startDate: Date;
-  endDate: Date | "Present";
-  skills: ValidSkills[];
+  startYear: number;
+  endYear: number;
   link: string;
-  logo?: string;
 }
 
-export const educationUnsorted: educationInterface[] = [
-  {
-    institution: "Federal University of Rio Grande do Sul (UFRGS)",
-    degree: "Master's degree, Design",
-    startDate: new Date("2025-03-01"),
-    endDate: "Present",
-    skills: ["UX", "Research", "Design Thinking", "Figma", "Bootstrap", "Scrum", "Usability Testing", "User Research", "Information Architecture", "Prototyping", "Wireframing", "User Flows", "Miro"],
-    link: "https://www.ufrgs.br/pgdesign",
-    logo: "/education/ufrgs-logo.jpeg",
-  },
-  {
-    institution: "Federal University of Rio Grande do Sul (UFRGS)",
-    degree: "Postgraduate degree, User Experience Design",
-    startDate: new Date("2022-05-01"),
-    endDate: new Date("2024-03-01"),
-    skills: ["UX", "Research", "Design Thinking", "Figma", "Bootstrap", "Scrum", "Usability Testing", "User Research", "Information Architecture", "Interaction Design", "Prototyping", "Wireframing", "User Flows", "Miro"],
-    link: "https://www.ufrgs.br",
-    logo: "/education/ufrgs-logo.jpeg",
-  },
-  {
-    institution: "Uniritter",
-    degree: "Bachelor of technology degree, Big Data and Analytical Inteligence",
-    startDate: new Date("2020-01-01"),
-    endDate: new Date("2023-01-01"),
-    skills: ["Big Data", "Research", "SQL", "Scrum", "Python", "NoSQL", "A/B Testing"],
-    link: "https://www.uniritter.edu.br/",
-    logo: "/education/uniritter-logo.jpeg",
-  },
-  {
-    institution: "Laureate Education",
-    degree: "Master of Business Administration, Governance for IT and Innovation",
-    startDate: new Date("2017-01-01"),
-    endDate: new Date("2019-01-01"),
-    skills: ["Management", "Research", "Governance", "ITIL", ],
-    link: "https://www.laureate.net/",
-    logo: "/education/laureate-logo.jpeg",
-  },
-  {
-    institution: "Uniritter",
-    degree: "Bachelor degree, Graphic Design",
-    startDate: new Date("2008-01-01"),
-    endDate: new Date("2013-01-01"),
-    skills: ["Design Thinking", "UX", "UI", "Accessibility", "Adobe XD", "Sketch", "InVision", "Miro", "Usability Testing", "Prototyping", "Wireframing"],
-    link: "https://www.uniritter.edu.br/",
-    logo: "/education/uniritter-logo.jpeg",
-  },
-  {
-    institution: "Federal University of Rio Grande do Sul (UFRGS)",
-    degree: "Technical degree, Information Systems",
-    startDate: new Date("2007-01-01"),
-    endDate: new Date("2010-01-01"),
-    skills: ["PHP", "MySQL", "Git", "Drupal", "Wordpress", "C++", "HTML 5", "CSS 3", "Javascript"],
-    link: "https://www.ufrgs.br",
-    logo: "/education/ufrgs-logo.jpeg",
-  },
+export const education: EducationInterface[] = [
+  { id: "ufrgs-master", institution: "UFRGS", startYear: 2025, endYear: 2027, link: "https://www.ufrgs.br/pgdesign" },
+  { id: "ufrgs-ux", institution: "UFRGS / FEENG", startYear: 2022, endYear: 2024, link: "https://www.ufrgs.br" },
+  { id: "uniritter-bigdata", institution: "UniRitter", startYear: 2020, endYear: 2023, link: "https://www.uniritter.edu.br/" },
+  { id: "laureate-mba", institution: "Laureate International Universities", startYear: 2017, endYear: 2019, link: "https://www.laureate.net/" },
+  { id: "uniritter-design", institution: "UniRitter", startYear: 2008, endYear: 2013, link: "https://www.uniritter.edu.br/" },
+  { id: "ufrgs-technical", institution: "UFRGS", startYear: 2007, endYear: 2010, link: "https://www.ufrgs.br" },
+  { id: "senac-webdesign", institution: "SENAC/RS", startYear: 2007, endYear: 2007, link: "https://www.senacrs.com.br" },
 ];
-
-export const featuredEducation: educationInterface[] = educationUnsorted.slice(
-  0,
-  3
-);
