@@ -1,5 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
-
 import { StaticSvg } from "@/components/illustrations/static-svg";
 import { Section } from "@/components/site/section";
 import { Projects } from "@/config/projects";
@@ -72,17 +70,6 @@ export function Work({ dict }: { dict: Dictionary; locale: Locale }) {
                     ))}
                   </ul>
 
-                  {project.websiteLink ? (
-                    <a
-                      href={project.websiteLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 hover:underline"
-                    >
-                      {dict.ui.visitSite}
-                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </a>
-                  ) : null}
                 </div>
               </article>
             </li>

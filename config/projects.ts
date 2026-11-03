@@ -11,7 +11,6 @@ export interface ProjectInterface {
   techStack: string[];
   startDate: Date;
   endDate: Date;
-  websiteLink?: string;
   illustration: IllustrationId;
 }
 
@@ -59,7 +58,6 @@ export const Projects: ProjectInterface[] = [
     techStack: ["Next.js", "React", "Node.js", "CSS 3", "HTML 5"],
     startDate: new Date("2022-03-01"),
     endDate: new Date("2023-07-01"),
-    websiteLink: "https://aidron.ai",
     illustration: "aidron-spa",
   },
 ];

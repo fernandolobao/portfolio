@@ -22,7 +22,6 @@ export const ptBR: Dictionary = {
     language: "Idioma",
     toggleTheme: "Alternar tema claro e escuro",
     present: "Atual",
-    visitSite: "Visitar site",
     sectionLabel: "Seção",
   },
   hero: {
@@ -217,7 +216,7 @@ export const ptBR: Dictionary = {
       role: "Chefe de UX/UI · Aidron",
       summary:
         "Design system para os produtos web atuais e futuros de uma startup de dados em crescimento, com processos de DesignOps para mantê-lo vivo.",
-      results: [{ value: "Clientes", label: "conquistados em parte graças ao design system" }],
+      results: [],
       highlights: [
         "Alguns componentes nasceram de necessidades específicas de clientes, mantendo o sistema flexível.",
         "Documentação gerada automaticamente com Storybook.",
