@@ -1,4 +1,10 @@
-export type SkillGroupId = "frontend" | "backend" | "infra" | "design" | "process";
+export type SkillGroupId =
+  | "frontend"
+  | "native"
+  | "backend"
+  | "infra"
+  | "design"
+  | "process";
 
 /** Group labels are translated in the dictionaries; skill names are not. */
 export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
@@ -8,6 +14,13 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
       "React", "Next.js", "TypeScript", "JavaScript", "HTML 5", "CSS 3", "Sass",
       "Tailwind CSS", "styled-components", "Redux", "Material UI", "Ant Design",
       "Bootstrap", "GSAP", "Storybook", "Webpack",
+    ],
+  },
+  {
+    id: "native",
+    skills: [
+      "Swift", "SwiftUI", "Swift Charts", "Swift Package Manager", "MenuBarExtra",
+      "Keychain", "launchd",
     ],
   },
   {
@@ -22,7 +35,7 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
     id: "infra",
     skills: [
       "AWS", "Azure", "Docker", "Kubernetes", "Jenkins", "CI/CD", "Git", "GitHub",
-      "Jest", "Cypress", "Testing Library", "SonarQube",
+      "Jest", "Cypress", "Testing Library", "SonarQube", "GitHub Actions", "Shell scripting",
     ],
   },
   {
@@ -37,7 +50,7 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
     id: "process",
     skills: [
       "DesignOps", "Scrum", "Technical Documentation", "Code Review", "Mentoring",
-      "Multidisciplinary Teams", "Arduino",
+      "Multidisciplinary Teams", "Internationalization (i18n)", "Security audits", "Arduino",
     ],
   },
 ];

@@ -56,7 +56,7 @@ export interface Dictionary {
     ctaContact: string;
   };
   metrics: Result[];
-  work: { title: string; intro: string; resultsLabel: string };
+  work: { title: string; intro: string; resultsLabel: string; repoLabel: string };
   about: {
     title: string;
     paragraphs: string[];
@@ -67,7 +67,7 @@ export interface Dictionary {
   skills: {
     title: string;
     intro: string;
-    groups: Record<"frontend" | "backend" | "infra" | "design" | "process", string>;
+    groups: Record<"frontend" | "native" | "backend" | "infra" | "design" | "process", string>;
   };
   experience: {
     title: string;

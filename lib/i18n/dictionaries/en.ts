@@ -43,8 +43,9 @@ export const en: Dictionary = {
   work: {
     title: "Selected work",
     intro:
-      "Four projects where design and engineering meet: two design systems, a data-driven decision platform and a company website.",
+      "Five projects where design and engineering meet: a native macOS app, two design systems, a data-driven decision platform and a company website.",
     resultsLabel: "Results",
+    repoLabel: "View on GitHub",
   },
   about: {
     title: "About",
@@ -67,6 +68,7 @@ export const en: Dictionary = {
     intro: "From a component in Storybook to the deployment pipeline, including user research.",
     groups: {
       frontend: "Frontend",
+      native: "Native apps (macOS)",
       backend: "Backend & data",
       infra: "Infrastructure & quality",
       design: "Design & UX",
@@ -186,6 +188,18 @@ export const en: Dictionary = {
     awards: ["Hogarthian of the month, Hogarth Worldwide"],
   },
   projects: {
+    "zeroserver-control": {
+      name: "ZeroServer Control",
+      role: "Creator · ZeroServer Community Cloud",
+      summary:
+        "Native macOS menu bar app for ZeroServer, Brazil's community cloud: this Mac's agent and every node on your account one click away, with no terminal or dashboard tab.",
+      results: [],
+      highlights: [
+        "Controls this Mac's local agent and every node on the account: live status, pause, resume and stop, plus CPU, RAM and disk per node.",
+        "Dashboard with 24-hour telemetry in native charts (Swift Charts) and a timeline of each node's status events.",
+        "Built on ZeroServer's principles: open source (MIT), credentials only in the Keychain, a security audit with fixes covered by regression tests, and an English and Portuguese interface.",
+      ],
+    },
     ragnarok: {
       name: "Ragnarök",
       role: "Design System Lead · Lojas Renner",

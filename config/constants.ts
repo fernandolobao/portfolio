@@ -7,6 +7,12 @@ export type ValidCategory =
   | "DesignOps"
   | "DevOps"
   | "Design System"
-  | "Atomic Design";
+  | "Atomic Design"
+  | "Desktop";
 
-export type IllustrationId = "ragnarok" | "datalab" | "aidron-ds" | "aidron-spa";
+export type IllustrationId =
+  | "zeroserver-control"
+  | "ragnarok"
+  | "datalab"
+  | "aidron-ds"
+  | "aidron-spa";
