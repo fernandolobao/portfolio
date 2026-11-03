@@ -13,7 +13,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
       <div className="container relative z-10 pt-6 xl:pt-0">
         <div className="max-w-2xl">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-sm text-muted-foreground">
+            <p className="inline-flex items-center gap-2 rounded-full border border-foreground/70 bg-background/50 dark:border-foreground/40 px-3 py-1 text-sm text-muted-foreground backdrop-blur-sm">
               <MapPin className="h-3.5 w-3.5 text-brand" aria-hidden="true" />
               {dict.hero.location}
             </p>
@@ -37,7 +37,7 @@ export function Hero({ dict }: { dict: Dictionary }) {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center rounded-full border border-border px-6 py-3 font-medium transition-colors hover:bg-muted"
+                className="inline-flex items-center rounded-full border border-foreground/70 bg-background/40 dark:border-foreground/50 px-6 py-3 font-medium backdrop-blur-sm transition-colors hover:bg-background/75"
               >
                 {dict.hero.ctaContact}
               </a>
