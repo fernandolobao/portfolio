@@ -78,11 +78,38 @@
 }
 
 @layer components {
+  .skills-backdrop {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  }
+
+  .skills-backdrop-track {
+    animation-name: skills-scroll;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skills-backdrop-track {
+      animation: none;
+    }
+  }
+
   .section-eyebrow {
     @apply font-heading text-sm font-medium tabular-nums tracking-widest text-brand;
   }
 
   .chip {
     @apply inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground;
+  }
+}
+
+@keyframes skills-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -33.3333%, 0);
   }
 }
