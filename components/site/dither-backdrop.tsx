@@ -45,7 +45,7 @@ float seg(vec2 p, vec2 a, vec2 b) {
 
 void main() {
   vec2 uv = (vUv - 0.5) * 0.9965 + 0.5 + vec2(0.0, 0.0004);
-  float v = texture2D(uPrev, uv).r * 0.955 - 0.0015;
+  float v = texture2D(uPrev, uv).r * 0.94 - 0.0015;
   float asp = uRes.x / uRes.y;
   vec2 p = vec2(vUv.x * asp, vUv.y);
   float d = seg(p, vec2(uA.x * asp, uA.y), vec2(uB.x * asp, uB.y));
@@ -92,7 +92,7 @@ void main() {
   float n = ridge(p + vec2(uTime * 0.018, uTime * 0.011));
   float fb = texture2D(uFb, vUv).r;
   float v = n * 0.62 + fb * 0.8;
-  float level = clamp((v - 0.41) * 2.0, 0.0, 0.42);
+  float level = clamp((v - 0.47) * 1.8, 0.0, 0.3);
   float on = step(bayer4(gl_FragCoord.xy), level);
   gl_FragColor = vec4(uColor * uAlpha * on, uAlpha * on);
 }`;
@@ -233,7 +233,7 @@ export function DitherBackdrop() {
         const raw = getComputedStyle(root).getPropertyValue("--brand").trim();
         const [h, s, l] = raw.split(/\s+/).map(parseFloat);
         if ([h, s, l].every((n) => Number.isFinite(n))) color = hslToRgb(h, s, l);
-        alpha = root.classList.contains("dark") ? 0.22 : 0.18;
+        alpha = root.classList.contains("dark") ? 0.13 : 0.11;
       };
 
       // pointer state (uv space, y up)
@@ -256,7 +256,7 @@ export function DitherBackdrop() {
         gl.uniform2f(fbU.res, width, height);
         gl.uniform2f(fbU.a, ax, ay);
         gl.uniform2f(fbU.b, bx, by);
-        gl.uniform1f(fbU.force, force * 0.32);
+        gl.uniform1f(fbU.force, force * 0.24);
         gl.drawArrays(gl.TRIANGLES, 0, 3);
 
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
