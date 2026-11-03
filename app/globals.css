@@ -88,6 +88,37 @@
 }
 
 @layer components {
+  /* ---- Hero render backdrop ---- */
+  /* calms the text column (left) and fades into the next section (bottom) */
+  .hero-media-fade {
+    -webkit-mask-image:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.5) 32%, #000 62%),
+      linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.5) 32%, #000 62%),
+      linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .hero-poster,
+  .hero-video {
+    object-position: 66% 50%;
+  }
+
+  @media (max-width: 1279px) {
+    /* below xl: a banner above the text, only the bottom edge dissolves */
+    .hero-media-fade {
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 72%, transparent 100%);
+    }
+    .hero-poster,
+    .hero-video {
+      object-position: 92% 50%;
+    }
+  }
+
+
   /* ---- Space backdrop: static star fields and dust (moved only by pointer
      parallax), a few twinkling stars, rare meteors ---- */
   .space-parallax {
@@ -193,3 +224,5 @@
     transform: translate3d(-520px, 330px, 0) rotate(-32deg);
   }
 }
+
+
