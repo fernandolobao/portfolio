@@ -20,6 +20,11 @@
     --brand: 83 77% 22%;
     --brand-foreground: 60 14% 98%;
 
+    --space-a: 240 70% 62%;
+    --space-b: 280 60% 66%;
+    --space-alpha: 0.11;
+    --space-star-opacity: 0.5;
+
     --radius: 0.75rem;
   }
 
@@ -39,6 +44,11 @@
 
     --brand: 74 84% 68%;
     --brand-foreground: 0 0% 5%;
+
+    --space-a: 232 80% 58%;
+    --space-b: 268 70% 60%;
+    --space-alpha: 0.13;
+    --space-star-opacity: 1;
   }
 
   * {
@@ -78,11 +88,108 @@
 }
 
 @layer components {
+  /* ---- Space backdrop: static star fields and dust (moved only by pointer
+     parallax), a few twinkling stars, rare meteors ---- */
+  .space-parallax {
+    position: absolute;
+    inset: 0;
+  }
+
+  .space-canvas {
+    position: absolute;
+    left: -60px;
+    top: -60px;
+    opacity: 0;
+    transition: opacity 2s ease;
+  }
+
+  .space-canvas[data-ready="true"] {
+    opacity: var(--space-star-opacity);
+  }
+
+  .space-dust {
+    position: absolute;
+    border-radius: 9999px;
+    background: radial-gradient(
+      closest-side,
+      hsl(var(--c) / var(--space-alpha)),
+      hsl(var(--c) / calc(var(--space-alpha) * 0.4)) 50%,
+      transparent 100%
+    );
+  }
+
+  .space-twinkle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 2px;
+    border-radius: 9999px;
+    opacity: 0.4;
+  }
+
+  [data-motion="on"] .space-twinkle-a {
+    animation: space-twinkle 6s ease-in-out infinite;
+  }
+
+  [data-motion="on"] .space-twinkle-b {
+    animation: space-twinkle 6s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+
+  .space-meteor {
+    position: absolute;
+    width: 150px;
+    height: 1px;
+    opacity: 0;
+    background: linear-gradient(270deg, hsl(var(--foreground) / 0.75), transparent);
+  }
+
+  [data-motion="on"] .space-meteor {
+    animation: space-meteor var(--dur, 34s) linear infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  html:not(.dark) .space-meteor {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .space-meteor {
+      display: none;
+    }
+  }
+
   .section-eyebrow {
     @apply font-heading text-sm font-medium tabular-nums tracking-widest text-brand;
   }
 
   .chip {
     @apply inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-muted-foreground;
+  }
+}
+
+@keyframes space-twinkle {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes space-meteor {
+  0%,
+  92% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(-32deg);
+  }
+  93.5% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(-520px, 330px, 0) rotate(-32deg);
   }
 }
