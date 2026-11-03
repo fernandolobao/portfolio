@@ -52,7 +52,7 @@ export const es: Dictionary = {
       "Trabajo en la intersección entre código y diseño: he liderado un design system, organizado procesos de DesignOps y servido de puente entre diseñadores y desarrolladores en equipos multidisciplinarios. Disfruto colaborar con desarrolladores, diseñadores y stakeholders para entregar soluciones de calidad que respondan a las necesidades de quienes las usan.",
       "Hoy soy Full Stack Engineer en Solvd y Head de UX/UI en Aidron. También curso una maestría en Diseño en la UFRGS (2025–2027).",
     ],
-    photoAlt: "Retrato estilizado de Fernando Camilotti, con gafas y barba, en una embarcación con un puerto y montañas al fondo",
+    photoAlt: "Ilustración de Fernando Camilotti: hombre con gafas redondas, piercing en la nariz, pelo peinado hacia arriba y barba larga que se vuelve gris, con sudadera gris, frente a triángulos luminosos",
     languagesTitle: "Idiomas",
     languages: [
       { name: "Portugués", level: "nativo" },
