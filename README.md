@@ -1,138 +1,70 @@
-# Next.js 14 Developer Portfolio Template
+# fernandocamilotti.com
 
-A modern, responsive, and SEO-optimized **Next.js 14 portfolio template** designed for developers, designers, and professionals. This open-source project helps you showcase your skills, experience, and projects with an elegant interface that stands out. Built with server-side rendering, TypeScript, and the latest web standards for optimal performance.
+Portfólio de Fernando Camilotti Monteiro, engenheiro de software e designer.
+Site de página única em **pt-BR**, **inglês** e **espanhol**, feito com Next.js 14 (App Router), TypeScript e Tailwind CSS. Publicado na Vercel.
 
-## ✨ Key Features
+## Rodando localmente
 
-- **Professional Experience Timeline**: Showcase your career journey with a visually appealing timeline
-- **Project Showcase**: Display your technical projects with detailed information and live demos
-- **Dark/Light Mode**: Professional appearance with theme support
-- **Responsive Design**: Optimized for all devices (mobile, tablet, desktop)
-- **100% Performance Score**: Fully optimized for speed and Core Web Vitals
-- **SEO-Ready**: Structured data, meta tags, and optimized content
-- **Modern Tech Stack**: Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui
-- **Easy Customization**: Well-organized code structure with minimal effort required
-- **Animations**: Subtle animations for engaging user experience
-- **Analytics Integration**: Ready for Google Analytics tracking
-- **Contact Form**: Functional contact form with validation
-- **Open Source**: Free to use and modify for your personal portfolio
+```bash
+npm install
+npm run dev          # http://localhost:3000 (redireciona para o idioma do navegador)
+npm run build        # build de produção
+npm start            # serve o build
+```
 
-## 🚀 Demo
+Variáveis de ambiente (opcionais, veja `.env.example`):
 
-View the live demo at [https://nbarkiya.xyz/](https://nbarkiya.xyz)
+| Variável | Para que serve |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | URL base usada em canonical, hreflang, sitemap e Open Graph. Troque para `https://…` quando o domínio tiver certificado. |
+| `NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID` | Liga o Google Analytics. Sem ele, o GA não carrega. |
+| `NEXT_PUBLIC_GOOGLE_VERIFICATION` | Código de verificação do Search Console. |
 
-https://github.com/namanbarkiya/minimal-next-portfolio/assets/82203888/f93bf5ca-c2bd-4fe5-a413-1050ebf6cf78
+O Vercel Analytics só é carregado quando o site roda na Vercel.
 
-## 🛠️ Tech Stack
+## Onde editar o conteúdo
 
-- **Framework**: [Next.js 14](https://nextjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Form Handling**: Server actions with validation
-- **Analytics**: Google Analytics + Vercel Analytics
-- **Deployment**: [Vercel](https://vercel.com)
+| O quê | Onde |
+| --- | --- |
+| Textos (pt-BR, en, es) | `lib/i18n/dictionaries/*.ts` (o tipo está em `lib/i18n/types.ts`) |
+| Projetos (stack, datas, links) | `config/projects.ts` (textos em `dictionaries`, pelo `id`) |
+| Experiência | `config/experience.ts` (textos em `dictionaries`, pelo `id`) |
+| Formação | `config/education.ts` |
+| Publicações (do Lattes) | `config/publications.ts` |
+| Habilidades | `config/skills.ts` |
+| Contato e redes | `config/socials.ts` |
+| URL do site | `config/site.ts` |
 
-## 🔧 Getting Started
+Para adicionar um projeto: crie a entrada em `config/projects.ts` e o texto correspondente (`projects[id]`) nos **três** dicionários. O TypeScript avisa se faltar algum idioma.
 
-To get started with your own portfolio website:
+## Idiomas e SEO
 
-1. Clone this repository:
+- Rotas `/pt-BR`, `/en` e `/es`. Quem acessa `/` é redirecionado pelo cookie `NEXT_LOCALE` e depois pelo `Accept-Language`; o padrão é `pt-BR` (`lib/i18n/config.ts`).
+- Cada página tem canonical, hreflang (`pt-BR`, `en`, `es`, `x-default`), Open Graph, Twitter cards e JSON-LD `Person`.
+- `sitemap.xml` e `robots.txt` são gerados (`app/sitemap.ts`, `app/robots.ts`).
+- A imagem de abertura (OG/Twitter) é gerada por idioma em `app/[locale]/opengraph-image.tsx`.
 
-   ```bash
-   git clone https://github.com/namanbarkiya/minimal-next-portfolio.git my-portfolio
-   cd my-portfolio
-   ```
+## Ilustrações
 
-2. Copy the contents of `.env.copy` to a new `.env` file and fill in the required information.
+As ilustrações SVG ficam em `scripts/illustrations/` e são pré-renderizadas em `components/illustrations/generated.ts`, para o React não precisar hidratá-las. Depois de editar uma ilustração:
 
-3. Install dependencies:
+```bash
+npm run build:illustrations
+```
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+## Fontes
 
-4. Start the development server:
+Hospedadas localmente em `assets/fonts` (Inter 400–600 e Space Grotesk SemiBold, só com os caracteres latinos usados), sem requisição ao Google Fonts. `Inter-Bold.ttf` e `Inter-Regular.ttf` servem apenas para gerar as imagens OG.
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
+## Estrutura
 
-5. Open [http://localhost:3000](http://localhost:3000) in your web browser to see the website.
-
-## 🎨 Customization
-
-The portfolio is designed to be easily customizable:
-
-1. **Personal Information**: Update your personal info in `config/site.ts`
-2. **Skills**: Add your skills in `config/skills.ts`
-3. **Projects**: Add your technical projects in `config/projects.ts`
-4. **Experience**: Customize your professional experience in `config/experience.ts`
-5. **Contributions**: Showcase your contributions in `config/contributions.ts`
-6. **Colors & Theme**: Modify the theme in `tailwind.config.js`
-
-## 🌟 Features In Detail
-
-### Professional Experience Timeline
-
-An interactive, animated timeline that showcases your career journey with expandable sections for details about each position and company.
-
-### Project Showcase
-
-Display your technical projects with detailed information, technologies used, live demo links, and comprehensive project descriptions.
-
-### Skills Showcase
-
-Visually represent your technical and soft skills with customizable ratings and categories.
-
-### Contact Form Integration
-
-A ready-to-use contact form that can connect to various backend services.
-
-### SEO Optimization
-
-Built-in SEO features with proper meta tags, structured data, and semantic HTML.
-
-## 📱 Performance and Responsiveness
-
-![best-portfolio-website-score](https://github.com/namanbarkiya/minimal-next-portfolio/assets/82203888/3fb9c94d-9d99-4e98-92ea-14aadc91b568)
-![100-score-vercel](https://github.com/namanbarkiya/minimal-next-portfolio/assets/82203888/7cfe28cc-b619-4199-9dab-1cf16723b86d)
-
-This template is optimized for:
-
-- 100% Lighthouse score
-- Excellent Core Web Vitals metrics
-- Responsive design across all device sizes
-- Fast loading times with proper image optimization
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgements
-
-- Design inspired by modern portfolio best practices
-- Built by [Naman Barkiya](https://github.com/namanbarkiya)
-- Icons from [Lucide](https://lucide.dev/)
-
-## 💻 Deploy on Vercel
-
-The easiest way to deploy your portfolio is using [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), the platform from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=namanbarkiya/minimal-next-portfolio&type=Date)](https://star-history.com/#namanbarkiya/minimal-next-portfolio&Date)
-
----
-
-**Built with ❤️ by [Naman Barkiya](https://github.com/namanbarkiya)**
+```
+app/[locale]/        layout, página única, imagens OG
+app/                 sitemap, robots, manifest, ícones
+components/site/     seções da página (hero, trabalhos, sobre…)
+components/common/   seletor de idioma, analytics, tema
+config/              dados que não dependem de idioma
+lib/i18n/            idiomas, dicionários, middleware helpers
+scripts/             gerador das ilustrações
+middleware.ts        negociação de idioma
+```

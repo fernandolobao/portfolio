@@ -18,17 +18,15 @@ import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { cn } from "@/lib/utils";
 
 const fontSans = localFont({
-  src: [
-    { path: "../../assets/fonts/Inter-Variable-Ext.woff2", weight: "100 900" },
-    { path: "../../assets/fonts/Inter-Variable.woff2", weight: "100 900" },
-  ],
+  src: "../../assets/fonts/Inter-Latin-400-600.woff2",
+  weight: "400 600",
   variable: "--font-sans",
   display: "swap",
 });
 
 const fontHeading = localFont({
-  src: "../../assets/fonts/SpaceGrotesk-Variable.woff2",
-  weight: "300 700",
+  src: "../../assets/fonts/SpaceGrotesk-SemiBold-Latin.woff2",
+  weight: "600",
   variable: "--font-heading",
   display: "swap",
 });
@@ -39,6 +37,11 @@ interface RootLayoutProps {
 }
 
 export const dynamicParams = false;
+
+export const viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark light",
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -61,7 +64,6 @@ export function generateMetadata({ params }: { params: { locale: string } }) {
       template: `%s | ${dict.meta.siteName}`,
     },
     description: dict.meta.description,
-    keywords: siteConfig.keywords,
     authors: [{ name: siteConfig.authorName, url: siteConfig.url }],
     creator: siteConfig.authorName,
     openGraph: {
@@ -74,25 +76,11 @@ export function generateMetadata({ params }: { params: { locale: string } }) {
       title: dict.meta.title,
       description: dict.meta.description,
       siteName: dict.meta.siteName,
-      images: [
-        {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: dict.meta.title,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: dict.meta.title,
       description: dict.meta.description,
-      images: [siteConfig.ogImage],
-    },
-    icons: {
-      icon: siteConfig.iconIco,
-      shortcut: siteConfig.logoIcon,
-      apple: siteConfig.logoIcon,
     },
     alternates: {
       canonical: localizePath(locale),
@@ -138,7 +126,7 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
         </noscript>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} themes={["light", "dark"]}>
           {children}
-          <Analytics />
+          {process.env.VERCEL ? <Analytics /> : null}
         </ThemeProvider>
       </body>
       {GA_ID ? <GoogleAnalytics gaId={GA_ID} /> : null}

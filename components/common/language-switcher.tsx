@@ -29,6 +29,7 @@ export function LanguageSwitcher({ locale, label }: LanguageSwitcherProps) {
           <Link
             key={target}
             href={hrefFor(target)}
+            prefetch={false}
             hrefLang={target}
             lang={target}
             aria-current={active ? "true" : undefined}

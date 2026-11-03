@@ -20,12 +20,13 @@ export function SiteHeader({
       <div className="container flex h-16 items-center justify-between gap-4">
         <Link
           href={localizePath(locale)}
-          aria-label={dict.meta.siteName}
+          prefetch={false}
           className="font-heading text-lg font-semibold tracking-tight"
         >
-          <span className="sm:hidden" aria-hidden="true">
+          <span className="sm:hidden">
             FC<span className="text-brand">.</span>
           </span>
+          <span className="sr-only sm:hidden">{dict.meta.siteName}</span>
           <span className="hidden sm:inline">
             {dict.meta.siteName}
             <span className="text-brand">.</span>

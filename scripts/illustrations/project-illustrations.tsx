@@ -1,4 +1,4 @@
-import type { IllustrationId } from "@/config/constants";
+export type IllustrationId = "ragnarok" | "datalab" | "aidron-ds" | "aidron-spa";
 
 const svgProps = {
   viewBox: "0 0 640 400",
@@ -145,6 +145,8 @@ function AidronSpa() {
     </svg>
   );
 }
+
+export const illustrationIds: IllustrationId[] = ["ragnarok", "datalab", "aidron-ds", "aidron-spa"];
 
 const map: Record<IllustrationId, () => JSX.Element> = {
   ragnarok: Ragnarok,

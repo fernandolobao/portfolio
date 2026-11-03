@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { ProjectIllustration } from "@/components/illustrations/project-illustrations";
+import { StaticSvg } from "@/components/illustrations/static-svg";
 import { Section } from "@/components/site/section";
 import { Projects } from "@/config/projects";
 import type { Locale } from "@/lib/i18n/config";
@@ -20,7 +20,7 @@ export function Work({ dict }: { dict: Dictionary; locale: Locale }) {
                 className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card"
               >
                 <div className="aspect-[16/10] border-b border-border bg-muted">
-                  <ProjectIllustration id={project.illustration} />
+                  <StaticSvg name={project.illustration} className="h-full w-full" />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <p className="text-sm text-muted-foreground">

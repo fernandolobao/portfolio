@@ -1,9 +1,9 @@
 /** Decorative: a UI wireframe, a code panel and a Bézier path — engineering meets design. */
-export function HeroIllustration({ className }: { className?: string }) {
+export function HeroIllustration() {
   return (
     <svg
       viewBox="0 0 520 520"
-      className={className}
+      className="block h-auto w-full"
       aria-hidden="true"
       focusable="false"
     >
