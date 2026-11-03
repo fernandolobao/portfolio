@@ -20,6 +20,11 @@
     --brand: 83 77% 22%;
     --brand-foreground: 60 14% 98%;
 
+    --neb-a: 255 80% 70%;
+    --neb-b: 180 70% 52%;
+    --neb-c: 83 70% 45%;
+    --neb-alpha: 0.16;
+
     --radius: 0.75rem;
   }
 
@@ -39,6 +44,11 @@
 
     --brand: 74 84% 68%;
     --brand-foreground: 0 0% 5%;
+
+    --neb-a: 255 85% 62%;
+    --neb-b: 180 85% 45%;
+    --neb-c: 74 84% 60%;
+    --neb-alpha: 0.2;
   }
 
   * {
@@ -78,87 +88,53 @@
 }
 
 @layer components {
-  /* ---- Sci-fi backdrop: perspective grid, radar sweep, drifting lights ---- */
-  .scifi-grid-wrap {
+  /* ---- Nebula backdrop ---- */
+  .nebula-layer {
     position: absolute;
-    inset: auto 0 0 0;
-    height: 75vh;
-    overflow: hidden;
-    perspective: 520px;
-    perspective-origin: 50% 0%;
-    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 80%);
-    mask-image: linear-gradient(to top, #000 0%, transparent 80%);
+    will-change: transform;
   }
 
-  .scifi-grid {
+  .nebula-blob {
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    background: radial-gradient(
+      closest-side,
+      hsl(var(--c) / var(--neb-alpha)),
+      hsl(var(--c) / calc(var(--neb-alpha) * 0.45)) 45%,
+      transparent 100%
+    );
+    animation: nebula-drift var(--dur, 60s) ease-in-out infinite alternate;
+  }
+
+  .nebula-stars {
     position: absolute;
-    left: -60%;
-    right: -60%;
+    left: 0;
     top: 0;
-    bottom: -64px;
-    background-image:
-      linear-gradient(hsl(var(--brand) / 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--brand) / 0.12) 1px, transparent 1px);
-    background-size: 64px 64px;
-    transform-origin: 50% 0%;
-    transform: rotateX(62deg);
-    animation: scifi-grid 9s linear infinite;
-    will-change: transform;
+    width: 1px;
+    height: 1px;
+    animation: nebula-twinkle 7s ease-in-out infinite alternate;
   }
 
-  .scifi-radar {
+  .nebula-glow {
     position: absolute;
-    top: -14vw;
-    right: -16vw;
-    width: min(72vw, 1000px);
-    aspect-ratio: 1;
+    left: 0;
+    top: 0;
+    width: 460px;
+    height: 460px;
     border-radius: 9999px;
-    background: repeating-radial-gradient(
-      circle,
-      transparent 0 64px,
-      hsl(var(--brand) / 0.09) 64px 65px
-    );
-    -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 68%);
-    mask-image: radial-gradient(circle, #000 25%, transparent 68%);
-  }
-
-  .scifi-sweep {
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    background: conic-gradient(
-      from 0deg,
-      transparent 0deg 292deg,
-      hsl(var(--brand) / 0.14) 356deg,
-      transparent 360deg
-    );
-    animation: scifi-spin 40s linear infinite;
-    will-change: transform;
-  }
-
-  .scifi-dot {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    border-radius: 9999px;
-    background: hsl(var(--brand));
-    box-shadow: 0 0 8px 1px hsl(var(--brand) / 0.6);
+    background: radial-gradient(closest-side, hsl(var(--brand) / 0.17), transparent);
     opacity: 0;
-    animation: scifi-float var(--d, 24s) ease-in-out infinite;
-    animation-delay: var(--delay, 0s);
+    transition: opacity 0.8s ease;
+    will-change: transform;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .scifi-grid,
-    .scifi-sweep {
+    .nebula-blob,
+    .nebula-stars {
       animation: none;
-    }
-    .scifi-dot {
-      animation: none;
-      opacity: 0.25;
     }
   }
-
 
   .section-eyebrow {
     @apply font-heading text-sm font-medium tabular-nums tracking-widest text-brand;
@@ -169,35 +145,20 @@
   }
 }
 
-
-@keyframes scifi-grid {
+@keyframes nebula-drift {
   from {
-    transform: rotateX(62deg) translateY(0);
+    transform: translate3d(-4%, -3%, 0) scale(1);
   }
   to {
-    transform: rotateX(62deg) translateY(64px);
+    transform: translate3d(5%, 4%, 0) scale(1.12);
   }
 }
 
-@keyframes scifi-spin {
+@keyframes nebula-twinkle {
+  from {
+    opacity: 0.45;
+  }
   to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes scifi-float {
-  0% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.55;
-  }
-  80% {
-    opacity: 0.25;
-  }
-  100% {
-    transform: translate3d(0, -180px, 0);
-    opacity: 0;
+    opacity: 1;
   }
 }
