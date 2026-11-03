@@ -22,7 +22,6 @@ export const en: Dictionary = {
     language: "Language",
     toggleTheme: "Toggle light and dark theme",
     present: "Present",
-    visitSite: "Visit site",
     sectionLabel: "Section",
   },
   hero: {
@@ -217,7 +216,7 @@ export const en: Dictionary = {
       role: "Head of UX/UI · Aidron",
       summary:
         "Design system for the current and future web products of a fast-growing data startup, with DesignOps processes to keep it alive.",
-      results: [{ value: "Clients", label: "won in part thanks to the design system" }],
+      results: [],
       highlights: [
         "Some components came from specific client needs, keeping the system flexible.",
         "Documentation generated automatically with Storybook.",

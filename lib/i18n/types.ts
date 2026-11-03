@@ -44,7 +44,6 @@ export interface Dictionary {
     language: string;
     toggleTheme: string;
     present: string;
-    visitSite: string;
     sectionLabel: string;
   };
   hero: {
