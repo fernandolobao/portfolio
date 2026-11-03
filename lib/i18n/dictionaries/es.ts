@@ -46,6 +46,16 @@ export const es: Dictionary = {
       "Cinco proyectos donde se encuentran el diseño y la ingeniería: una app nativa para macOS, dos design systems, una plataforma de decisión basada en datos y un sitio institucional.",
     resultsLabel: "Resultados",
     repoLabel: "Ver en GitHub",
+    detail: {
+      eyebrow: "Caso de estudio",
+      back: "Trabajos",
+      readCase: "Leer el caso de estudio",
+      stackTitle: "Tecnologías",
+      linksTitle: "Enlaces",
+      repo: "Código en GitHub",
+      download: "Descargar la app",
+      site: "Conocer ZeroServer",
+    },
   },
   about: {
     title: "Sobre mí",
@@ -199,6 +209,95 @@ export const es: Dictionary = {
         "Dashboard con telemetría de 24 horas en gráficos nativos (Swift Charts) y línea de tiempo de los eventos de cada nodo.",
         "Hecha con los principios de ZeroServer: código abierto (MIT), credenciales solo en el Keychain, auditoría de seguridad con correcciones cubiertas por pruebas e interfaz en portugués e inglés.",
       ],
+      detail: {
+        metaTitle: "ZeroServer Control: app para macOS",
+        metaDescription:
+          "Caso de estudio de ZeroServer Control, app nativa en Swift que controla los nodos de ZeroServer Community Cloud: arquitectura, seguridad, pruebas y roadmap.",
+        ogAlt:
+          "Portada del caso de estudio ZeroServer Control: una malla de nodos, el menú de la barra de menús y un gráfico de telemetría",
+        lead: "ZeroServer Control vive en la barra de menús del Mac y pone ZeroServer Community Cloud a un clic: el agente de tu máquina y todos los nodos de tu cuenta, sin abrir una terminal ni una pestaña de dashboard.",
+        facts: [
+          { label: "Rol", value: "Creador" },
+          { label: "Año", value: "2026" },
+          { label: "Plataforma", value: "macOS 13+ · Swift y SwiftUI" },
+          { label: "Licencia", value: "MIT (código abierto)" },
+          { label: "Estado", value: "v0.1.1 publicada en GitHub" },
+        ],
+        sections: [
+          {
+            title: "El contexto",
+            paragraphs: [
+              "ZeroServer es una nube comunitaria brasileña: quien tiene hardware ocioso, como un PC gamer o un servidor casero, se vuelve proveedor de un nodo, y quien desarrolla hace deploy en la malla a un costo justo. Su manifiesto habla de descentralizar el poder, aprovechar lo ocioso y construir confianza con transparencia.",
+              "A quien provee le faltaba algo simple: saber, sin esfuerzo, si su nodo y los demás de la cuenta están sanos, ocupados o caídos. Hasta entonces eso significaba mirar una ventana de terminal o mantener abierta una pestaña del panel web.",
+              "La app responde a eso con una utilidad ligera, siempre disponible, en el mismo lugar donde mirarías la hora.",
+            ],
+          },
+          {
+            title: "Qué hace la app",
+            bullets: [
+              "Agente de este Mac: iniciar, detener y consultar el estado del LaunchDaemon del nodo proveedor local. La consulta no pide contraseña; iniciar y detener piden la autorización de administrador del propio macOS.",
+              "Todos los nodos de la cuenta: estado en vivo (online, inactivo, ocupado, sobrecargado, offline), pausar y reanudar los que están online, forzar la detención de cualquiera y ver CPU, RAM y disco de cada nodo.",
+              "Dashboard: telemetría de las últimas 24 horas en gráficos nativos (Swift Charts), un resumen del momento actual y una línea de tiempo de los eventos de estado de cada nodo.",
+              "Detalles de utilidad de verdad: abrir al iniciar sesión en el Mac, interfaz en portugués e inglés y inicio de sesión solo cuando hace falta (controlar el agente local no requiere cuenta).",
+            ],
+          },
+          {
+            title: "Arquitectura",
+            paragraphs: [
+              "Es un cliente delgado: no existe un backend propio. La app habla con la misma API GraphQL que usaría un panel web y, en el Mac, con launchd mediante launchctl.",
+            ],
+            figure: "architecture",
+            caption:
+              "Los módulos de la app: Account (sesión y clientes de API), Remote (polling y acciones sobre los nodos), Controller (agente local) y la interfaz en SwiftUI.",
+          },
+          {
+            title: "Decisiones de diseño",
+            bullets: [
+              "Swift Package Manager, sin proyecto de Xcode. Bastan las Command Line Tools, y un script arma el .app con su Info.plist, ícono y firma ad-hoc. Cualquiera compila con swift build.",
+              "Polling adaptativo: la lista de nodos se actualiza cada 10 segundos y, si la API falla, retrocede exponencialmente hasta 60 segundos, volviendo al ritmo normal en el primer éxito. La telemetría de 24 horas usa una cadencia más lenta.",
+              "Sin carreras entre lectura y acción: la consulta es de solo lectura y no compite con pausar, reanudar o forzar la detención, y la lista tiene un orden estable para que las filas no se reordenen en cada actualización.",
+              "El modelo respeta al backend: \"pausado\" no es un estado de conectividad, así que no se modeló como uno.",
+            ],
+          },
+          {
+            title: "Seguridad",
+            paragraphs: [
+              "Antes de crecer, la app pasó por una auditoría completa de seguridad, corrección e interfaz. Todo lo que apareció se corrigió, y cada corrección se volvió una prueba de regresión. Los puntos principales:",
+            ],
+            bullets: [
+              "Inyección de comandos. La etiqueta del daemon podía venir de una variable de entorno y llegar a un shell ejecutado con privilegios de administrador. Un proceso local sin privilegios podía definir esa variable y ejecutar código como root cuando el usuario hacía clic en Iniciar y escribía su contraseña. Ahora solo se aceptan etiquetas con forma de identificador de launchd (letras, dígitos, punto, guion y guion bajo); cualquier otra cosa vuelve a la etiqueta de producción.",
+              "Carrera en la renovación de la sesión. El polling y otra acción podían renovar el token a la vez, reenviando el mismo refresh token, lo que tumbaría la sesión si el backend lo rota. Ahora hay una única renovación en vuelo, y un contador de época descarta las renovaciones que terminan después de un cierre de sesión.",
+              "Credenciales. Solo se guarda el refresh token, directo en el Keychain, restringido a la app y a este dispositivo. Nada en texto plano y nada en logs.",
+              "Telemetría inválida. Un valor no finito (NaN o infinito) tumbaba la app, y ahora se maneja.",
+            ],
+          },
+          {
+            title: "Calidad y entrega",
+            bullets: [
+              "Pruebas sin framework: como las Command Line Tools no traen XCTest, el script de pruebas compila el código de producción (cuentas, nodos y modelos) junto con drivers escritos a mano, solo con swiftc, y falla con un código de salida distinto de cero. Es una barrera real, no una prueba manual.",
+              "CI en GitHub Actions (macOS): build, pruebas, verificación contra secretos en el código y comprobación de que las traducciones en inglés y portugués tienen exactamente las mismas claves. Una clave olvidada cae en silencio al texto crudo, y esta comprobación lo detecta antes de publicar.",
+              "Un LaunchDaemon descartable para probar el control del agente sin instalar el agente real.",
+              "Releases versionadas, con la app empaquetada en .zip.",
+            ],
+          },
+          {
+            title: "Límites conocidos",
+            bullets: [
+              "Firma ad-hoc, sin notarización: en el primer uso hay que hacer clic derecho y elegir Abrir.",
+              "El menú de la barra no permanece abierto después de un clic (limitación del estilo de menú de SwiftUI). Una versión en ventana está en el roadmap.",
+              "La telemetría llega hasta 24 horas, que es lo que conserva el backend.",
+            ],
+          },
+          {
+            title: "Próximos pasos",
+            bullets: [
+              "Notificaciones de salud de los nodos: comparar cada actualización con la anterior, avisar solo los eventos que el usuario elija y abrir el nodo correcto en el dashboard.",
+              "Firma con Developer ID, notarización y actualización automática.",
+              "Varias cuentas, además de búsqueda y filtro para cuentas grandes.",
+            ],
+          },
+        ],
+      },
     },
     ragnarok: {
       name: "Ragnarök",

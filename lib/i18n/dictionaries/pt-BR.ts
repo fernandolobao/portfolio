@@ -46,6 +46,16 @@ export const ptBR: Dictionary = {
       "Cinco projetos em que design e engenharia se encontram: um app nativo para macOS, dois design systems, uma plataforma de decisão orientada a dados e um site institucional.",
     resultsLabel: "Resultados",
     repoLabel: "Ver no GitHub",
+    detail: {
+      eyebrow: "Estudo de caso",
+      back: "Trabalhos",
+      readCase: "Ler estudo de caso",
+      stackTitle: "Tecnologias",
+      linksTitle: "Links",
+      repo: "Código no GitHub",
+      download: "Baixar o app",
+      site: "Conhecer a ZeroServer",
+    },
   },
   about: {
     title: "Sobre",
@@ -199,6 +209,95 @@ export const ptBR: Dictionary = {
         "Dashboard com telemetria de 24 horas em gráficos nativos (Swift Charts) e linha do tempo dos eventos de cada nó.",
         "Feito com os princípios da ZeroServer: código aberto (MIT), credenciais só no Keychain, auditoria de segurança com correções cobertas por testes e interface em português e inglês.",
       ],
+      detail: {
+        metaTitle: "ZeroServer Control: app para macOS",
+        metaDescription:
+          "Estudo de caso do ZeroServer Control, app nativo em Swift que controla os nós da ZeroServer Community Cloud: arquitetura, segurança, testes e roadmap.",
+        ogAlt:
+          "Capa do estudo de caso ZeroServer Control: malha de nós, menu da barra de menus e gráfico de telemetria",
+        lead: "O ZeroServer Control vive na barra de menus do Mac e coloca a ZeroServer Community Cloud a um clique: o agente da sua máquina e todos os nós da sua conta, sem abrir terminal nem uma aba de dashboard.",
+        facts: [
+          { label: "Papel", value: "Criador" },
+          { label: "Ano", value: "2026" },
+          { label: "Plataforma", value: "macOS 13+ · Swift e SwiftUI" },
+          { label: "Licença", value: "MIT (código aberto)" },
+          { label: "Status", value: "v0.1.1 publicada no GitHub" },
+        ],
+        sections: [
+          {
+            title: "O contexto",
+            paragraphs: [
+              "A ZeroServer é uma nuvem comunitária brasileira: quem tem hardware ocioso, como um PC gamer ou um servidor caseiro, vira provedor de um nó, e quem desenvolve faz deploy na malha a custo justo. O manifesto fala em descentralizar o poder, aproveitar o ocioso e construir confiança pela transparência.",
+              "Faltava algo simples para quem provê: saber, sem esforço, se o seu nó e os outros da conta estão saudáveis, ocupados ou fora do ar. Até então isso significava olhar uma janela de terminal ou manter aberta uma aba do painel web.",
+              "O app responde a isso com um utilitário leve, sempre disponível, no mesmo lugar onde você olharia a hora.",
+            ],
+          },
+          {
+            title: "O que o app faz",
+            bullets: [
+              "Agente deste Mac: iniciar, parar e consultar o status do LaunchDaemon do nó provedor local. A consulta roda sem senha; iniciar e parar pedem a autorização de administrador do próprio macOS.",
+              "Todos os nós da conta: status ao vivo (online, ocioso, ocupado, sobrecarregado, offline), pausar e retomar os que estão online, forçar a parada de qualquer um e ver CPU, RAM e disco de cada nó.",
+              "Dashboard: telemetria das últimas 24 horas em gráficos nativos (Swift Charts), um resumo do momento atual e uma linha do tempo dos eventos de status de cada nó.",
+              "Detalhes de utilitário de verdade: abrir no login do Mac, interface em português e inglês e login pedido só quando necessário (o controle do agente local não exige conta).",
+            ],
+          },
+          {
+            title: "Arquitetura",
+            paragraphs: [
+              "É um cliente fino: não existe backend próprio. O app fala com a mesma API GraphQL que um painel web usaria e, no Mac, com o launchd por meio do launchctl.",
+            ],
+            figure: "architecture",
+            caption:
+              "Os módulos do app: Account (sessão e clientes de API), Remote (polling e ações nos nós), Controller (agente local) e a interface em SwiftUI.",
+          },
+          {
+            title: "Decisões de projeto",
+            bullets: [
+              "Swift Package Manager, sem projeto do Xcode. Só as Command Line Tools bastam, e um script monta o .app com Info.plist, ícone e assinatura ad-hoc. Qualquer pessoa compila com swift build.",
+              "Polling adaptativo: a lista de nós atualiza a cada 10 segundos e, se a API falha, recua exponencialmente até 60 segundos, voltando ao ritmo normal no primeiro sucesso. A telemetria de 24 horas usa uma cadência mais lenta.",
+              "Sem corridas entre leitura e ação: a consulta é somente leitura e não disputa com pausar, retomar ou forçar a parada, e a lista tem ordenação estável para as linhas não se reembaralharem a cada atualização.",
+              "O modelo respeita o backend: \"pausado\" não é um status de conectividade, então não foi modelado como um.",
+            ],
+          },
+          {
+            title: "Segurança",
+            paragraphs: [
+              "Antes de crescer, o app passou por uma auditoria completa de segurança, corretude e interface. Tudo o que apareceu foi corrigido, e cada correção virou um teste de regressão. Os principais pontos:",
+            ],
+            bullets: [
+              "Injeção de comando. O rótulo do daemon podia vir de uma variável de ambiente e chegava a um shell executado com privilégios de administrador. Um processo local sem privilégios poderia definir essa variável e rodar código como root quando o usuário clicasse em Iniciar e digitasse a senha. Agora só entram rótulos no formato de um identificador do launchd (letras, dígitos, ponto, hífen e sublinhado); qualquer outra coisa volta ao rótulo de produção.",
+              "Corrida na renovação da sessão. O polling e outra ação podiam renovar o token ao mesmo tempo, reenviando o mesmo refresh token, o que derrubaria a sessão se o backend o rotaciona. Agora existe uma única renovação em voo, e um contador de época descarta renovações que terminam depois de um logout.",
+              "Credenciais. Só o refresh token é gravado, direto no Keychain, restrito ao app e a este dispositivo. Nada em texto puro e nada em log.",
+              "Telemetria inválida. Um valor não finito (NaN ou infinito) derrubava o app, e agora é tratado.",
+            ],
+          },
+          {
+            title: "Qualidade e entrega",
+            bullets: [
+              "Testes sem framework: como as Command Line Tools não trazem o XCTest, o script de testes compila o código de produção (contas, nós e modelos) junto com drivers escritos à mão, só com swiftc, e falha com código de saída diferente de zero. É uma barreira de verdade, não um teste manual.",
+              "CI no GitHub Actions (macOS): build, testes, verificação contra segredos no código e checagem de que as traduções em inglês e português têm exatamente as mesmas chaves. Uma chave esquecida cai em silêncio no texto cru, e essa checagem pega isso antes de publicar.",
+              "Um LaunchDaemon descartável para testar o controle do agente sem instalar o agente real.",
+              "Releases versionadas, com o app empacotado em .zip.",
+            ],
+          },
+          {
+            title: "Limites conhecidos",
+            bullets: [
+              "Assinatura ad-hoc, sem notarização: no primeiro uso é preciso clicar com o botão direito e escolher Abrir.",
+              "O menu da barra não permanece aberto depois de um clique (limitação do estilo de menu do SwiftUI). Uma versão em janela está no roadmap.",
+              "A telemetria vai até 24 horas, que é o que o backend mantém.",
+            ],
+          },
+          {
+            title: "Próximos passos",
+            bullets: [
+              "Notificações de saúde dos nós: comparar cada atualização com a anterior, avisar só os eventos que o usuário escolher e abrir o nó certo no dashboard.",
+              "Assinatura com Developer ID, notarização e atualização automática.",
+              "Várias contas e busca e filtro para contas grandes.",
+            ],
+          },
+        ],
+      },
     },
     ragnarok: {
       name: "Ragnarök",

@@ -232,6 +232,71 @@ function ZeroServerControl() {
   );
 }
 
+/** Architecture of ZeroServer Control (language-neutral labels). */
+export function ZeroServerArchitecture() {
+  const mods = [
+    { y: 74, t: "UI", s: "SwiftUI · MenuBarExtra" },
+    { y: 138, t: "Account", s: "APIClient · GraphQL · session" },
+    { y: 202, t: "Remote", s: "polling · node actions" },
+    { y: 266, t: "Controller", s: "launchctl · osascript" },
+  ];
+  const dots: [number, number][] = [[430, 62], [470, 84], [514, 58], [556, 86], [596, 60], [452, 110], [534, 108]];
+  const dl: [number, number][] = [[0, 1], [1, 2], [2, 3], [3, 4], [1, 5], [3, 6], [5, 6]];
+  const arrow = "fill-muted-foreground";
+  return (
+    <svg {...svgProps}>
+      <defs>
+        <marker id="zs-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" className={arrow} />
+        </marker>
+      </defs>
+      <rect width="640" height="400" className="fill-muted" />
+      {/* the app */}
+      <rect x="24" y="24" width="296" height="352" rx="16" className="fill-card stroke-border" strokeWidth="1.5" />
+      <circle cx="48" cy="50" r="11" className="fill-brand" />
+      <rect x="44" y="44" width="8" height="12" rx="4" fill="none" stroke="#0a0a0a" strokeWidth="1.8" />
+      <text x="68" y="55" className="fill-foreground" fontSize="15" fontWeight="600">ZeroServer Control</text>
+      {mods.map((m) => (
+        <g key={m.t}>
+          <rect x="44" y={m.y} width="256" height="52" rx="10" className="fill-muted stroke-border" strokeWidth="1.2" />
+          <text x="60" y={m.y + 22} className="fill-foreground" fontSize="14" fontWeight="600">{m.t}</text>
+          <text x="60" y={m.y + 40} className="fill-muted-foreground" fontSize="11.5">{m.s}</text>
+        </g>
+      ))}
+      {[126, 190, 254].map((y) => (
+        <line key={y} x1="172" y1={y} x2="172" y2={y + 12} className="stroke-muted-foreground" strokeWidth="1.4" markerEnd="url(#zs-arrow)" opacity="0.7" />
+      ))}
+      {/* nodes */}
+      <g className="stroke-brand" strokeWidth="1" opacity="0.4">
+        {dl.map(([a, b], i) => (
+          <line key={i} x1={dots[a][0]} y1={dots[a][1]} x2={dots[b][0]} y2={dots[b][1]} />
+        ))}
+      </g>
+      {dots.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 5 : 3.6} className={i % 3 === 0 ? "fill-brand" : "fill-muted-foreground"} />
+      ))}
+      <text x="508" y="140" textAnchor="middle" className="fill-muted-foreground" fontSize="11.5">Nodes</text>
+      {/* GraphQL API */}
+      <rect x="404" y="166" width="212" height="60" rx="12" fill="none" className="stroke-brand" strokeWidth="1.6" />
+      <text x="420" y="192" className="fill-foreground" fontSize="14" fontWeight="600">GraphQL API</text>
+      <text x="420" y="211" className="fill-muted-foreground" fontSize="11.5">api.zeroserver.cc</text>
+      <line x1="510" y1="165" x2="510" y2="146" className="stroke-muted-foreground" strokeWidth="1.4" markerEnd="url(#zs-arrow)" opacity="0.7" />
+      <line x1="300" y1="164" x2="402" y2="190" className="stroke-brand" strokeWidth="1.6" markerEnd="url(#zs-arrow)" />
+      <text x="338" y="168" className="fill-muted-foreground" fontSize="11">GraphQL</text>
+      {/* Keychain */}
+      <rect x="404" y="244" width="212" height="52" rx="12" className="fill-card stroke-border" strokeWidth="1.4" />
+      <text x="420" y="268" className="fill-foreground" fontSize="14" fontWeight="600">Keychain</text>
+      <text x="420" y="285" className="fill-muted-foreground" fontSize="11.5">refresh token · this device only</text>
+      <path d="M300 184 L352 184 L352 270 L402 270" fill="none" className="stroke-muted-foreground" strokeWidth="1.4" markerEnd="url(#zs-arrow)" opacity="0.7" />
+      {/* launchd */}
+      <rect x="404" y="314" width="212" height="52" rx="12" className="fill-card stroke-border" strokeWidth="1.4" />
+      <text x="420" y="338" className="fill-foreground" fontSize="14" fontWeight="600">launchd</text>
+      <text x="420" y="355" className="fill-muted-foreground" fontSize="11.5">cc.zeroserver.agent</text>
+      <path d="M300 292 L362 292 L362 340 L402 340" fill="none" className="stroke-muted-foreground" strokeWidth="1.4" markerEnd="url(#zs-arrow)" opacity="0.7" />
+    </svg>
+  );
+}
+
 export const illustrationIds: IllustrationId[] = [
   "zeroserver-control",
   "ragnarok",

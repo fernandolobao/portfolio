@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
 
+import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { defaultLocale, locales } from "@/lib/i18n/config";
 
-const paths = [""];
+const paths = ["", ...Projects.filter((p) => p.caseStudy).map((p) => `/work/${p.id}`)];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

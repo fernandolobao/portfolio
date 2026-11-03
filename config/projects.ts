@@ -14,6 +14,10 @@ export interface ProjectInterface {
   illustration: IllustrationId;
   /** Public source repository (shown as a link on the card). */
   repoLink?: string;
+  /** Has its own page at /work/<id>. */
+  caseStudy?: boolean;
+  downloadLink?: string;
+  siteLink?: string;
 }
 
 export const Projects: ProjectInterface[] = [
@@ -26,6 +30,9 @@ export const Projects: ProjectInterface[] = [
     endDate: new Date("2026-08-01"),
     illustration: "zeroserver-control",
     repoLink: "https://github.com/zeroserver-cc/zsc-osx-app",
+    caseStudy: true,
+    downloadLink: "https://github.com/zeroserver-cc/zsc-osx-app/releases/latest",
+    siteLink: "https://zeroserver.cc",
   },
   {
     id: "ragnarok",

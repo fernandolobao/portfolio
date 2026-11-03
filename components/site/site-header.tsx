@@ -40,7 +40,7 @@ export function SiteHeader({
           {links.map((key) => (
             <a
               key={key}
-              href={`#${key}`}
+              href={`${localizePath(locale)}#${key}`}
               className="transition-colors hover:text-foreground"
             >
               {dict.nav[key]}
@@ -65,7 +65,7 @@ export function SiteHeader({
               {links.map((key) => (
                 <a
                   key={key}
-                  href={`#${key}`}
+                  href={`${localizePath(locale)}#${key}`}
                   className="block rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-muted"
                 >
                   {dict.nav[key]}

@@ -3,12 +3,31 @@ export interface Result {
   label: string;
 }
 
+export interface DetailSection {
+  title: string;
+  paragraphs?: string[];
+  bullets?: string[];
+  figure?: "architecture";
+  caption?: string;
+}
+
+export interface ProjectDetail {
+  metaTitle: string;
+  metaDescription: string;
+  ogAlt: string;
+  lead: string;
+  facts: { label: string; value: string }[];
+  sections: DetailSection[];
+}
+
 export interface ProjectText {
   name: string;
   role: string;
   summary: string;
   results: Result[];
   highlights: string[];
+  /** Present only for projects that have a case-study page. */
+  detail?: ProjectDetail;
 }
 
 export interface ExperienceText {
@@ -56,7 +75,22 @@ export interface Dictionary {
     ctaContact: string;
   };
   metrics: Result[];
-  work: { title: string; intro: string; resultsLabel: string; repoLabel: string };
+  work: {
+    title: string;
+    intro: string;
+    resultsLabel: string;
+    repoLabel: string;
+    detail: {
+      eyebrow: string;
+      back: string;
+      readCase: string;
+      stackTitle: string;
+      linksTitle: string;
+      repo: string;
+      download: string;
+      site: string;
+    };
+  };
   about: {
     title: string;
     paragraphs: string[];
