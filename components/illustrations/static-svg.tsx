@@ -10,7 +10,11 @@ export function StaticSvg({
   name,
   className,
 }: {
-  name: "hero" | IllustrationId | "zeroserver-architecture";
+  name:
+    | "hero"
+    | IllustrationId
+    | "zeroserver-architecture"
+    | "ragnarok-pipeline";
   className?: string;
 }) {
   return (

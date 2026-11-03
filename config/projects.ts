@@ -18,6 +18,8 @@ export interface ProjectInterface {
   caseStudy?: boolean;
   downloadLink?: string;
   siteLink?: string;
+  /** Set only for installable software: drives SoftwareApplication structured data. */
+  software?: { os: string; license: string };
 }
 
 export const Projects: ProjectInterface[] = [
@@ -33,6 +35,7 @@ export const Projects: ProjectInterface[] = [
     caseStudy: true,
     downloadLink: "https://github.com/zeroserver-cc/zsc-osx-app/releases/latest",
     siteLink: "https://zeroserver.cc",
+    software: { os: "macOS 13+", license: "https://opensource.org/licenses/MIT" },
   },
   {
     id: "ragnarok",
@@ -42,6 +45,7 @@ export const Projects: ProjectInterface[] = [
     startDate: new Date("2021-03-01"),
     endDate: new Date("2021-08-01"),
     illustration: "ragnarok",
+    caseStudy: true,
   },
   {
     id: "datalab",

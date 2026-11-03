@@ -297,6 +297,51 @@ export function ZeroServerArchitecture() {
   );
 }
 
+/** From Figma to the products: the engineering path of the design system (language-neutral labels). */
+export function RagnarokPipeline() {
+  const stages = [
+    { x: 28, y: 44, t: "Figma", s: "tokens · variants", accent: false },
+    { x: 238, y: 44, t: "Handoff", s: "DesignOps · DevOps", accent: false },
+    { x: 448, y: 44, t: "Tokens", s: "Sass variables", accent: false },
+    { x: 28, y: 176, t: "Components", s: "React · TypeScript", accent: true },
+    { x: 238, y: 176, t: "Storybook", s: "docs · guidelines", accent: true },
+    { x: 448, y: 176, t: "Package", s: "published · versioned", accent: true },
+  ];
+  const w = 164, h = 72;
+  const arrow = "fill-muted-foreground";
+  return (
+    <svg {...svgProps}>
+      <defs>
+        <marker id="rg-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" className={arrow} />
+        </marker>
+      </defs>
+      <rect width="640" height="400" className="fill-muted" />
+      <text x="28" y="28" className="fill-muted-foreground" fontSize="11.5" letterSpacing="2">DESIGN</text>
+      <text x="28" y="160" className="fill-brand" fontSize="11.5" letterSpacing="2">ENGINEERING</text>
+      {stages.map((st) => (
+        <g key={st.t}>
+          <rect x={st.x} y={st.y} width={w} height={h} rx="14" className={st.accent ? "fill-card stroke-brand" : "fill-card stroke-border"} strokeWidth={st.accent ? 1.6 : 1.4} />
+          <text x={st.x + 18} y={st.y + 33} className="fill-foreground" fontSize="17" fontWeight="600">{st.t}</text>
+          <text x={st.x + 18} y={st.y + 54} className="fill-muted-foreground" fontSize="12">{st.s}</text>
+        </g>
+      ))}
+      {[[28 + w, 80, 238, 80], [238 + w, 80, 448, 80], [28 + w, 212, 238, 212], [238 + w, 212, 448, 212]].map(([x1, y1, x2, y2], i) => (
+        <line key={i} x1={x1 + 6} y1={y1} x2={x2 - 6} y2={y2} className="stroke-muted-foreground" strokeWidth="1.6" markerEnd="url(#rg-arrow)" opacity="0.8" />
+      ))}
+      <path d="M530 116 L530 146 L110 146 L110 174" fill="none" className="stroke-muted-foreground" strokeWidth="1.6" markerEnd="url(#rg-arrow)" opacity="0.8" />
+      {/* products */}
+      <path d="M530 250 L530 292" fill="none" className="stroke-brand" strokeWidth="1.8" markerEnd="url(#rg-arrow)" />
+      <rect x="28" y="296" width="584" height="72" rx="14" fill="none" className="stroke-brand" strokeWidth="1.6" />
+      <text x="46" y="328" className="fill-foreground" fontSize="17" fontWeight="600">Data products</text>
+      <text x="46" y="350" className="fill-muted-foreground" fontSize="12">one system · several products and brands</text>
+      {[386, 424, 462, 500].map((x, i) => (
+        <rect key={x} x={x + 40} y="316" width="26" height="26" rx="7" className={i === 0 ? "fill-brand" : "fill-muted stroke-border"} strokeWidth="1.2" />
+      ))}
+    </svg>
+  );
+}
+
 export const illustrationIds: IllustrationId[] = [
   "zeroserver-control",
   "ragnarok",

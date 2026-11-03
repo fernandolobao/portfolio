@@ -81,6 +81,7 @@ export default function CaseStudyPage({
   const pageUrl = `${siteConfig.url}${localizePath(locale, `/work/${project.id}`)}`;
 
   const links = [
+    detail.credit && { label: detail.credit.label, href: detail.credit.href },
     project.repoLink && { label: labels.repo, href: project.repoLink },
     project.downloadLink && { label: labels.download, href: project.downloadLink },
     project.siteLink && { label: labels.site, href: project.siteLink },
@@ -89,23 +90,36 @@ export default function CaseStudyPage({
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "@id": `${pageUrl}#app`,
-        name: text.name,
-        description: detail.metaDescription,
-        url: pageUrl,
-        applicationCategory: "DeveloperApplication",
-        operatingSystem: "macOS 13+",
-        license: "https://opensource.org/licenses/MIT",
-        isAccessibleForFree: true,
-        inLanguage: locale,
-        image: `${siteConfig.url}/og/work-${project.id}-${locale}.jpg`,
-        author: { "@id": `${siteConfig.url}/#person` },
-        ...(project.downloadLink ? { downloadUrl: project.downloadLink } : {}),
-        ...(project.repoLink ? { sameAs: [project.repoLink] } : {}),
-        offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
-      },
+      project.software
+        ? {
+            "@type": "SoftwareApplication",
+            "@id": `${pageUrl}#work`,
+            name: text.name,
+            description: detail.metaDescription,
+            url: pageUrl,
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: project.software.os,
+            license: project.software.license,
+            isAccessibleForFree: true,
+            inLanguage: locale,
+            image: `${siteConfig.url}/og/work-${project.id}-${locale}.jpg`,
+            author: { "@id": `${siteConfig.url}/#person` },
+            ...(project.downloadLink ? { downloadUrl: project.downloadLink } : {}),
+            ...(project.repoLink ? { sameAs: [project.repoLink] } : {}),
+            offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
+          }
+        : {
+            "@type": "CreativeWork",
+            "@id": `${pageUrl}#work`,
+            name: text.name,
+            description: detail.metaDescription,
+            url: pageUrl,
+            inLanguage: locale,
+            dateCreated: String(project.startDate.getUTCFullYear()),
+            image: `${siteConfig.url}/og/work-${project.id}-${locale}.jpg`,
+            author: { "@id": `${siteConfig.url}/#person` },
+            ...(detail.credit ? { isBasedOn: detail.credit.href } : {}),
+          },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -212,14 +226,18 @@ export default function CaseStudyPage({
                 </ul>
               ) : null}
             </div>
-            {section.figure === "architecture" ? (
+            {section.figure ? (
               <figure className="mt-8">
                 <div
                   className="relative w-full overflow-hidden rounded-lg border border-border bg-muted"
                   style={{ paddingTop: "62.5%" }}
                 >
                   <StaticSvg
-                    name="zeroserver-architecture"
+                    name={
+                      section.figure === "pipeline"
+                        ? "ragnarok-pipeline"
+                        : "zeroserver-architecture"
+                    }
                     className="absolute inset-0 overflow-hidden"
                   />
                 </div>

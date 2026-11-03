@@ -313,6 +313,98 @@ export const es: Dictionary = {
         "Hub central de guías de diseño, documentación de componentes y buenas prácticas.",
         "Construido con React, TypeScript y Storybook.",
       ],
+      detail: {
+        metaTitle: "Ragnarök: design system white label",
+        metaDescription:
+          "Caso de estudio de Ragnarök, design system white label para productos de datos de Renner: de Figma al código, con 53% menos tiempo de desarrollo.",
+        ogAlt:
+          "Portada del caso de estudio Ragnarök Design System: componentes, tokens y tipografía de un design system",
+        lead: "Ragnarök es un design system white label para los productos de datos de Lojas Renner. El concepto nació en el equipo de UX; yo llevé al código todo lo que viene después de Figma: componentes, documentación, empaquetado, publicación, versionado y handoff.",
+        facts: [
+          { label: "Rol", value: "Design System Lead (de Figma al código)" },
+          { label: "Empresa", value: "Lojas Renner · Tribu Datalab" },
+          { label: "Año", value: "2021" },
+          { label: "Stack", value: "React · TypeScript · Sass · Storybook" },
+          { label: "Lanzamiento", value: "18 de mayo" },
+        ],
+        credit: {
+          label: "Concepto documentado por Rodrigo Cibils",
+          href: "https://cibils.notion.site/Concep-o-do-Ragnar-k-Design-System-Whitelabel-para-Produtos-de-Dados-fc73a8d94e404f3fb28455eded1a3227",
+        },
+        sections: [
+          {
+            title: "El contexto",
+            paragraphs: [
+              "La tribu Datalab, de Lojas Renner, construye productos de datos para un público interno: personas de Renner, Camicado, Ashua y Youcom que deciden con base en análisis. Esos productos nacían directamente en el código, sin una etapa de prototipado en Figma, sin styleguide y sin design system. El resultado eran pantallas sin consistencia, entregas lentas y poco engagement de quienes los usaban.",
+              "Ragnarök fue la respuesta: un design system pensado para varios productos y varias marcas (white label), con la ambición de reducir a la mitad el tiempo de desarrollo de un nuevo producto de datos.",
+              "El concepto, la investigación y el diseño son de Rodrigo Cibils, Chapter Lead y DesignOps de la tribu, y están documentados por él. Este caso de estudio cuenta la otra mitad: cómo ese concepto se convirtió en el código que las personas ingenieras usan todos los días.",
+            ],
+          },
+          {
+            title: "El concepto, en resumen",
+            paragraphs: [
+              "Para entender las decisiones del código, conviene resumir lo que vino del diseño:",
+            ],
+            bullets: [
+              "Un sistema, varias marcas. Los tokens varían por unidad de negocio (Renner, Camicado, Ashua y Youcom) y los componentes son compartidos. Eso lo hace white label: el mismo componente viste marcas distintas.",
+              "Bibliotecas en tres categorías. Las omnipresentes (componentes básicos y gráficos) sirven a todos; las fragmentadas (tokens e iconografía) pertenecen a cada unidad; las opcionales atienden a un producto específico.",
+              "Partir de lo que ya existía. La lista de componentes salió de un inventario de los productos de datos en uso, con referencias de sistemas maduros del mercado. Los gráficos aprovechan una biblioteca de gráficos existente, y los íconos vienen de un conjunto genérico, para ganar tiempo.",
+              "Desktop primero. Las personas usan los productos en notebooks y muchas decisiones ocurren en reuniones, así que el sistema no nació mobile first.",
+              "Gobernanza compartida. El design system tiene una guardia dividida entre los capítulos de UX e Ingeniería de Software, con roles y procesos para crear, corregir y mejorar componentes.",
+              "El nombre. En la mitología nórdica, Ragnarök es la batalla que termina el mundo y abre un nuevo comienzo, la imagen elegida para un nuevo ciclo de productos de datos.",
+            ],
+          },
+          {
+            title: "Mi parte: de Figma al código",
+            paragraphs: [
+              "Con el concepto definido y modelado en Figma, asumí todo lo que viene después:",
+            ],
+            bullets: [
+              "Desarrollo. Los componentes en React y TypeScript, con los design tokens como variables Sass, partiendo de los tipos de token del concepto: canvas y grid, espaciado, elevación, borde, colores de marca, neutros, semánticos y de apoyo, tipografía y movimiento.",
+              "Documentación viva. Un hub en Storybook con las guías, la documentación de cada componente y las buenas prácticas, para que el equipo use el sistema sin depender de una conversación.",
+              "Empaquetado, publicación y versionado. Empaqueté, publiqué y versioné la biblioteca para que los productos pudieran adoptarla.",
+              "Handoff, DesignOps y DevOps. El camino entre Figma y el código, con el proceso para crear nuevos componentes y corregir los existentes.",
+              "Métricas de uso. Hotjar y Google Analytics, para entender cómo se usaban el sistema y los productos.",
+            ],
+            figure: "pipeline",
+            caption:
+              "El camino de la ingeniería: de Figma (tokens y variantes) al handoff, a los tokens en Sass, a los componentes, a Storybook y al paquete versionado que adoptan los productos de datos.",
+          },
+          {
+            title: "Resultados",
+            paragraphs: [
+              "La meta hipotética era reducir en 50% el tiempo de desarrollo. En la primera oportunidad de uso, un nuevo producto de datos, Ragnarök se acercó: 53% menos tiempo de desarrollo en comparación con el último producto hecho de forma tradicional, y 33% más de engagement de las personas usuarias. Las mediciones están registradas en la documentación del concepto.",
+            ],
+            bullets: [
+              "Más de 30 componentes reutilizables, además del grid y los tokens, adoptados por más de dos equipos.",
+              "Datalab, la plataforma de apoyo a la decisión de Renner, usa el sistema completo.",
+              "Una ventaja en la contratación: dos personas de UX entrevistadas por la tribu, que estaban en otros procesos de selección, eligieron el equipo porque ya tenía un design system.",
+            ],
+          },
+          {
+            title: "Aprendizajes",
+            bullets: [
+              "Mostrar valor primero. Entregar el design system antes de procesos más pesados dio un retorno visible rápido y abrió espacio para la cultura de UX.",
+              "El compromiso pesa más que el tamaño del equipo. Con el apoyo de las personas involucradas, un design system puede nacer con un equipo pequeño, sin una consultora especializada.",
+              "Documentar es parte del producto. Un sistema solo reduce el tiempo de entrega si las personas pueden usarlo por su cuenta.",
+            ],
+          },
+          {
+            title: "Límites y próximos pasos",
+            bullets: [
+              "Los componentes se hicieron con los recursos de Figma de la época, como Auto Layout y variantes, antes de las variables y los componentes interactivos. Migrar a ellos es una evolución natural.",
+              "La iconografía usa un conjunto genérico. Cada unidad de negocio podría tener íconos propios.",
+              "Los gráficos se apoyan en una biblioteca existente. Dividirlos en microcomponentes daría más libertad a las personas diseñadoras para componer gráficos.",
+            ],
+          },
+          {
+            title: "Crédito y fuentes",
+            paragraphs: [
+              "Concepto, descubrimiento, definición y diseño de Ragnarök: Rodrigo Cibils. La información sobre el contexto, las decisiones de concepto y las mediciones viene de su documentación, reescrita aquí desde el punto de vista de quien llevó el sistema al código. Las pantallas y los materiales del proceso están en la fuente original.",
+            ],
+          },
+        ],
+      },
     },
     datalab: {
       name: "Datalab",

@@ -7,7 +7,7 @@ export interface DetailSection {
   title: string;
   paragraphs?: string[];
   bullets?: string[];
-  figure?: "architecture";
+  figure?: "architecture" | "pipeline";
   caption?: string;
 }
 
@@ -18,6 +18,8 @@ export interface ProjectDetail {
   lead: string;
   facts: { label: string; value: string }[];
   sections: DetailSection[];
+  /** Link to a source/credit (for example the concept documentation by the design lead). */
+  credit?: { label: string; href: string };
 }
 
 export interface ProjectText {
