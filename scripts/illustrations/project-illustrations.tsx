@@ -2,9 +2,11 @@ export type IllustrationId = "ragnarok" | "datalab" | "aidron-ds" | "aidron-spa"
 
 const svgProps = {
   viewBox: "0 0 640 400",
+  width: 640,
+  height: 400,
   "aria-hidden": true,
   focusable: "false",
-  className: "h-full w-full",
+  className: "block h-full w-full",
   preserveAspectRatio: "xMidYMid slice",
 } as const;
 

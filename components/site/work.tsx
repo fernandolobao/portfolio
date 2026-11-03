@@ -12,13 +12,19 @@ export function Work({ dict }: { dict: Dictionary; locale: Locale }) {
         {Projects.map((project, index) => {
           const text = dict.projects[project.id];
           return (
-            <li key={project.id}>
+            <li key={project.id} className="min-w-0">
               <article
                 aria-labelledby={`project-${project.id}`}
-                className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card"
+                className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-card"
               >
-                <div className="aspect-[16/10] border-b border-border bg-muted">
-                  <StaticSvg name={project.illustration} className="h-full w-full" />
+                <div
+                  className="relative w-full shrink-0 overflow-hidden border-b border-border bg-muted"
+                  style={{ paddingTop: "62.5%" }}
+                >
+                  <StaticSvg
+                    name={project.illustration}
+                    className="absolute inset-0 overflow-hidden"
+                  />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <p className="text-sm text-muted-foreground">
