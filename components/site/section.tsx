@@ -21,7 +21,7 @@ export function Section({
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className={cn("border-t border-border py-20 md:py-28", className)}
+      className={cn("py-20 md:py-28", className)}
     >
       <div className="container">
         <header className="mb-12 max-w-2xl md:mb-16">
