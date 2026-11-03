@@ -164,13 +164,14 @@ export const ptBR: Dictionary = {
       },
     },
     publicationsTitle: "Publicações e produção",
+    readPublication: "Ler publicação",
     kinds: {
       chapter: "Capítulo de livro",
-      event: "Congresso",
+      event: "Trabalho em congresso",
       website: "Site",
     },
     notes: {
-      protheses: "Participação no congresso.",
+      protheses: "Trabalho completo publicado nos anais.",
       moshpit: "Resenhas de álbuns musicais.",
     },
     certificationsTitle: "Certificações",

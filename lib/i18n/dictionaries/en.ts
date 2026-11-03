@@ -164,13 +164,14 @@ export const en: Dictionary = {
       },
     },
     publicationsTitle: "Publications & output",
+    readPublication: "Read publication",
     kinds: {
       chapter: "Book chapter",
-      event: "Congress",
+      event: "Conference paper",
       website: "Website",
     },
     notes: {
-      protheses: "Congress participation.",
+      protheses: "Full paper published in the proceedings.",
       moshpit: "Music album reviews.",
     },
     certificationsTitle: "Certifications",

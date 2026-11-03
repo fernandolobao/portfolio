@@ -79,6 +79,7 @@ export interface Dictionary {
     title: string;
     items: Record<string, EducationText>;
     publicationsTitle: string;
+    readPublication: string;
     kinds: { chapter: string; event: string; website: string };
     notes: Record<string, string>;
     certificationsTitle: string;
