@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { DitherBackdrop } from "@/components/site/dither-backdrop";
+import { SpaceBackdrop } from "@/components/site/space-backdrop";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { isLocale } from "@/lib/i18n/config";
@@ -19,7 +19,7 @@ export default function SiteLayout({
 
   return (
     <div className="flex min-h-screen flex-col">
-      <DitherBackdrop />
+      <SpaceBackdrop />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:shadow"
