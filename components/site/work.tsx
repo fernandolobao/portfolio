@@ -1,13 +1,13 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { StaticSvg } from "@/components/illustrations/static-svg";
 import { Section } from "@/components/site/section";
 import { Projects } from "@/config/projects";
-import type { Locale } from "@/lib/i18n/config";
+import { localizePath, type Locale } from "@/lib/i18n/config";
 import { formatYears } from "@/lib/format";
 import type { Dictionary } from "@/lib/i18n/types";
 
-export function Work({ dict }: { dict: Dictionary; locale: Locale }) {
+export function Work({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
     <Section id="work" index={1} title={dict.work.title} intro={dict.work.intro}>
       <ol className="grid gap-6 md:grid-cols-2">
@@ -78,13 +78,24 @@ export function Work({ dict }: { dict: Dictionary; locale: Locale }) {
                     ))}
                   </ul>
 
+                  {project.caseStudy ? (
+                    <a
+                      href={localizePath(locale, `/work/${project.id}`)}
+                      aria-label={`${dict.work.detail.readCase}: ${text.name}`}
+                      className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 hover:underline"
+                    >
+                      {dict.work.detail.readCase}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  ) : null}
+
                   {project.repoLink ? (
                     <a
                       href={project.repoLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${dict.work.repoLabel}: ${text.name}`}
-                      className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 hover:underline"
+                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
                     >
                       {dict.work.repoLabel}
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

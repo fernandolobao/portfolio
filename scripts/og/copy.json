@@ -1,20 +1,71 @@
 {
-  "pt-BR": {
-    "title": "Engenheiro de software e designer.",
-    "name": "Fernando Camilotti",
-    "line": "Mais de 15 anos de experiência · Porto Alegre, Brasil",
-    "chips": ["Design Systems", "UX/UI", "Full Stack"]
+  "home": {
+    "pt-BR": {
+      "title": "Engenheiro de software e designer.",
+      "name": "Fernando Camilotti",
+      "line": "Mais de 15 anos de experiência · Porto Alegre, Brasil",
+      "chips": [
+        "Design Systems",
+        "UX/UI",
+        "Full Stack"
+      ]
+    },
+    "en": {
+      "title": "Software engineer and designer.",
+      "name": "Fernando Camilotti",
+      "line": "15+ years of experience · Porto Alegre, Brazil",
+      "chips": [
+        "Design Systems",
+        "UX/UI",
+        "Full Stack"
+      ]
+    },
+    "es": {
+      "title": "Ingeniero de software y diseñador.",
+      "name": "Fernando Camilotti",
+      "line": "Más de 15 años de experiencia · Porto Alegre, Brasil",
+      "chips": [
+        "Design Systems",
+        "UX/UI",
+        "Full Stack"
+      ]
+    }
   },
-  "en": {
-    "title": "Software engineer and designer.",
-    "name": "Fernando Camilotti",
-    "line": "15+ years of experience · Porto Alegre, Brazil",
-    "chips": ["Design Systems", "UX/UI", "Full Stack"]
-  },
-  "es": {
-    "title": "Ingeniero de software y diseñador.",
-    "name": "Fernando Camilotti",
-    "line": "Más de 15 años de experiencia · Porto Alegre, Brasil",
-    "chips": ["Design Systems", "UX/UI", "Full Stack"]
+  "projects": {
+    "zeroserver-control": {
+      "pt-BR": {
+        "eyebrow": "Estudo de caso",
+        "title": "ZeroServer Control",
+        "line": "App nativo de barra de menus para macOS",
+        "by": "Fernando Camilotti · Criador",
+        "chips": [
+          "Swift",
+          "SwiftUI",
+          "Swift Charts"
+        ]
+      },
+      "en": {
+        "eyebrow": "Case study",
+        "title": "ZeroServer Control",
+        "line": "A native macOS menu bar app",
+        "by": "Fernando Camilotti · Creator",
+        "chips": [
+          "Swift",
+          "SwiftUI",
+          "Swift Charts"
+        ]
+      },
+      "es": {
+        "eyebrow": "Caso de estudio",
+        "title": "ZeroServer Control",
+        "line": "App nativa de barra de menús para macOS",
+        "by": "Fernando Camilotti · Creador",
+        "chips": [
+          "Swift",
+          "SwiftUI",
+          "Swift Charts"
+        ]
+      }
+    }
   }
 }

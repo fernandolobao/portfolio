@@ -11,11 +11,16 @@ import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { HeroIllustration } from "./hero-illustration";
-import { ProjectIllustration, illustrationIds } from "./project-illustrations";
+import {
+  ProjectIllustration,
+  ZeroServerArchitecture,
+  illustrationIds,
+} from "./project-illustrations";
 
 const out: Record<string, string> = {
   hero: renderToStaticMarkup(<HeroIllustration />),
 };
+out["zeroserver-architecture"] = renderToStaticMarkup(<ZeroServerArchitecture />);
 for (const id of illustrationIds) {
   out[id] = renderToStaticMarkup(<ProjectIllustration id={id} />);
 }

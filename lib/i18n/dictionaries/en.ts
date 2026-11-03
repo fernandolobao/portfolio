@@ -46,6 +46,16 @@ export const en: Dictionary = {
       "Five projects where design and engineering meet: a native macOS app, two design systems, a data-driven decision platform and a company website.",
     resultsLabel: "Results",
     repoLabel: "View on GitHub",
+    detail: {
+      eyebrow: "Case study",
+      back: "Work",
+      readCase: "Read the case study",
+      stackTitle: "Stack",
+      linksTitle: "Links",
+      repo: "Code on GitHub",
+      download: "Download the app",
+      site: "Meet ZeroServer",
+    },
   },
   about: {
     title: "About",
@@ -199,6 +209,95 @@ export const en: Dictionary = {
         "Dashboard with 24-hour telemetry in native charts (Swift Charts) and a timeline of each node's status events.",
         "Built on ZeroServer's principles: open source (MIT), credentials only in the Keychain, a security audit with fixes covered by regression tests, and an English and Portuguese interface.",
       ],
+      detail: {
+        metaTitle: "ZeroServer Control: a macOS app",
+        metaDescription:
+          "Case study of ZeroServer Control, a native Swift app that controls ZeroServer Community Cloud nodes: architecture, security, testing and roadmap.",
+        ogAlt:
+          "Cover of the ZeroServer Control case study: a mesh of nodes, the menu bar dropdown and a telemetry chart",
+        lead: "ZeroServer Control lives in the Mac's menu bar and puts ZeroServer Community Cloud one click away: your machine's agent and every node on your account, with no terminal and no dashboard tab.",
+        facts: [
+          { label: "Role", value: "Creator" },
+          { label: "Year", value: "2026" },
+          { label: "Platform", value: "macOS 13+ · Swift and SwiftUI" },
+          { label: "License", value: "MIT (open source)" },
+          { label: "Status", value: "v0.1.1 released on GitHub" },
+        ],
+        sections: [
+          {
+            title: "The context",
+            paragraphs: [
+              "ZeroServer is a Brazilian community cloud: people with idle hardware, such as a gaming PC or a home server, become node providers, and developers deploy to the mesh at a fair price. Its manifesto talks about decentralizing power, putting idle hardware to work and building trust through transparency.",
+              "Providers were missing something simple: knowing, effortlessly, whether their node and the others on the account are healthy, busy or down. Until then that meant watching a terminal window or keeping a web dashboard tab open.",
+              "The app answers that with a lightweight, always-available utility, right where you would check the time.",
+            ],
+          },
+          {
+            title: "What the app does",
+            bullets: [
+              "This Mac's agent: start, stop and check the status of the local provider node's LaunchDaemon. Checking the status needs no password; starting and stopping ask for macOS's own administrator authorization.",
+              "Every node on the account: live status (online, idle, busy, overloaded, offline), pause and resume the ones that are online, force-stop any of them, and see CPU, RAM and disk per node.",
+              "Dashboard: the last 24 hours of telemetry in native charts (Swift Charts), a current snapshot and a timeline of each node's status events.",
+              "Real-utility details: open at login, an English and Portuguese interface, and sign-in asked for only when needed (controlling the local agent needs no account).",
+            ],
+          },
+          {
+            title: "Architecture",
+            paragraphs: [
+              "It is a thin client: there is no backend of its own. The app talks to the same GraphQL API a web dashboard would use and, on the Mac, to launchd through launchctl.",
+            ],
+            figure: "architecture",
+            caption:
+              "The app's modules: Account (session and API clients), Remote (polling and node actions), Controller (local agent) and the SwiftUI interface.",
+          },
+          {
+            title: "Design decisions",
+            bullets: [
+              "Swift Package Manager, no Xcode project. The Command Line Tools are enough, and a script assembles the .app with its Info.plist, icon and ad-hoc signature. Anyone can build it with swift build.",
+              "Adaptive polling: the node list refreshes every 10 seconds and, if the API fails, backs off exponentially up to 60 seconds, returning to the normal pace on the first success. The 24-hour telemetry uses a slower cadence.",
+              "No races between reads and actions: the status poll is read-only and does not compete with pause, resume or force stop, and the list has a stable order so rows do not reshuffle on every refresh.",
+              "The model respects the backend: \"paused\" is not a connectivity status, so it was not modeled as one.",
+            ],
+          },
+          {
+            title: "Security",
+            paragraphs: [
+              "Before growing, the app went through a full security, correctness and interface audit. Everything it found was fixed, and every fix became a regression test. The main points:",
+            ],
+            bullets: [
+              "Command injection. The daemon label could come from an environment variable and reach a shell run with administrator privileges. An unprivileged local process could set that variable and run code as root when the user clicked Start and typed their password. Now only labels shaped like a launchd identifier (letters, digits, dot, hyphen and underscore) are accepted; anything else falls back to the production label.",
+              "Session refresh race. Polling and another action could refresh the token at the same time, resending the same refresh token, which would drop the session if the backend rotates it. Now there is a single in-flight refresh, and an epoch counter discards refreshes that finish after a sign-out.",
+              "Credentials. Only the refresh token is stored, straight into the Keychain, restricted to the app and to this device. Nothing in plaintext and nothing in logs.",
+              "Invalid telemetry. A non-finite value (NaN or infinity) used to crash the app and is now handled.",
+            ],
+          },
+          {
+            title: "Quality and delivery",
+            bullets: [
+              "Framework-free tests: since the Command Line Tools do not ship XCTest, the test script compiles the production code (accounts, nodes and models) together with hand-written drivers using only swiftc, and fails with a non-zero exit code. It is a real gate, not a manual check.",
+              "CI on GitHub Actions (macOS): build, tests, a check against secrets in the code and a check that the English and Portuguese translations have exactly the same keys. A forgotten key silently falls back to raw text, and this check catches it before shipping.",
+              "A throwaway LaunchDaemon to test the agent controls without installing the real agent.",
+              "Versioned releases, with the app packaged as a .zip.",
+            ],
+          },
+          {
+            title: "Known limits",
+            bullets: [
+              "Ad-hoc signature, not notarized: on first use you need to right-click and choose Open.",
+              "The menu bar dropdown does not stay open after a click (a limitation of SwiftUI's menu style). A window version is on the roadmap.",
+              "Telemetry goes up to 24 hours, which is what the backend keeps.",
+            ],
+          },
+          {
+            title: "Next steps",
+            bullets: [
+              "Node health notifications: compare each refresh with the previous one, alert only on the events the user picks and open the right node in the dashboard.",
+              "Developer ID signing, notarization and automatic updates.",
+              "Multiple accounts, plus search and filter for large accounts.",
+            ],
+          },
+        ],
+      },
     },
     ragnarok: {
       name: "Ragnarök",

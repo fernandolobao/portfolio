@@ -37,6 +37,17 @@ O Vercel Analytics só é carregado quando o site roda na Vercel.
 
 Para adicionar um projeto: crie a entrada em `config/projects.ts` e o texto correspondente (`projects[id]`) nos **três** dicionários. O TypeScript avisa se faltar algum idioma.
 
+## Estudos de caso (uma página por projeto)
+
+Cada projeto pode ter uma página própria em `/<idioma>/work/<id>` (hoje: `zeroserver-control`). Para criar uma:
+
+1. `config/projects.ts`: marque `caseStudy: true` e, se quiser, `repoLink`, `downloadLink` e `siteLink`.
+2. `lib/i18n/dictionaries/*.ts`: dentro de `projects[<id>]`, adicione `detail` (título e descrição para SEO, texto de abertura, fatos, seções) nos **três** idiomas. O TypeScript avisa se faltar algum.
+3. Imagem de compartilhamento: capture a capa (por exemplo, o bloco da capa na própria página) em `scripts/og/covers/<id>.png`, inclua o texto em `scripts/og/copy.json` e rode `python scripts/og/generate.py`.
+4. Se a página precisar de um diagrama, desenhe-o em `scripts/illustrations/` e rode `npm run build:illustrations`.
+
+A página entra sozinha no sitemap (com hreflang), no cartão da home (link "Ler estudo de caso") e nos dados estruturados (`SoftwareApplication` + `BreadcrumbList`).
+
 ## Idiomas e SEO
 
 - Rotas `/pt-BR`, `/en` e `/es`. Quem acessa `/` é redirecionado pelo cookie `NEXT_LOCALE` e depois pelo `Accept-Language`; o padrão é `pt-BR` (`lib/i18n/config.ts`).
