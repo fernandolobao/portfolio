@@ -28,7 +28,7 @@ export default async function OpenGraphImage({
   const locale = isLocale(params.locale) ? params.locale : "pt-BR";
   const dict = getDictionary(locale);
 
-  const portrait = await readFile(path.join(process.cwd(), "assets/images/og-illustration.jpg"));
+  const portrait = await readFile(path.join(process.cwd(), "assets/images/og-headshot.jpg"));
   const portraitSrc = `data:image/jpeg;base64,${portrait.toString("base64")}`;
 
   const [bold, regular] = await Promise.all([
@@ -70,14 +70,16 @@ export default async function OpenGraphImage({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={portraitSrc}
-          width={380}
-          height={475}
+          width={340}
+          height={510}
           alt=""
           style={{
             position: "absolute",
             right: 72,
-            top: 78,
-            objectFit: "contain",
+            top: 60,
+            borderRadius: 18,
+            border: "2px solid #2b3a47",
+            objectFit: "cover",
           }}
         />
       </div>

@@ -6,16 +6,20 @@ import type { Dictionary } from "@/lib/i18n/types";
 export function About({ dict }: { dict: Dictionary }) {
   return (
     <Section id="about" index={2} title={dict.about.title}>
-      <div className="grid gap-12 md:grid-cols-[380px_1fr] lg:gap-16">
+      <div className="grid gap-12 md:grid-cols-[340px_1fr] lg:gap-16">
         <div>
-          <Image
-            src="/images/me-illustration.svg"
-            alt={dict.about.photoAlt}
-            width={800}
-            height={1000}
-            unoptimized
-            className="h-auto w-full max-w-[380px] [-webkit-mask-image:radial-gradient(ellipse_76%_58%_at_50%_44%,#000_55%,transparent_100%)] [mask-image:radial-gradient(ellipse_76%_58%_at_50%_44%,#000_55%,transparent_100%)]"
-          />
+          <div
+            className="relative w-full max-w-[340px] overflow-hidden rounded-lg border border-border bg-muted"
+            style={{ paddingTop: "150%" }}
+          >
+            <Image
+              src="/images/headshot.jpg"
+              alt={dict.about.photoAlt}
+              fill
+              sizes="(min-width: 768px) 340px, 80vw"
+              className="object-cover"
+            />
+          </div>
         </div>
         <div>
           <div className="max-w-2xl space-y-5 text-lg">

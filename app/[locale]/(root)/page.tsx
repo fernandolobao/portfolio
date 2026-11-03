@@ -37,7 +37,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     name: "Fernando Camilotti Monteiro",
     alternateName: "Fernando Camilotti",
     url: `${siteConfig.url}${localizePath(locale)}`,
-    image: `${siteConfig.url}/profile-img.jpeg`,
+    image: `${siteConfig.url}/images/headshot.jpg`,
     jobTitle: dict.meta.jobTitle,
     description: dict.meta.description,
     email: SocialLinks.email,
