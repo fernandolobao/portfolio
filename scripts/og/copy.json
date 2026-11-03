@@ -66,6 +66,41 @@
           "Swift Charts"
         ]
       }
+    },
+    "ragnarok": {
+      "pt-BR": {
+        "eyebrow": "Estudo de caso",
+        "title": "Ragnarök Design System",
+        "line": "Design system white label para produtos de dados",
+        "by": "Fernando Camilotti · Design System Lead",
+        "chips": [
+          "React",
+          "TypeScript",
+          "Sass"
+        ]
+      },
+      "en": {
+        "eyebrow": "Case study",
+        "title": "Ragnarök Design System",
+        "line": "A white label design system for data products",
+        "by": "Fernando Camilotti · Design System Lead",
+        "chips": [
+          "React",
+          "TypeScript",
+          "Sass"
+        ]
+      },
+      "es": {
+        "eyebrow": "Caso de estudio",
+        "title": "Ragnarök Design System",
+        "line": "Design system white label para productos de datos",
+        "by": "Fernando Camilotti · Design System Lead",
+        "chips": [
+          "React",
+          "TypeScript",
+          "Sass"
+        ]
+      }
     }
   }
 }

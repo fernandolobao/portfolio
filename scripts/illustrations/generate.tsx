@@ -13,6 +13,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { HeroIllustration } from "./hero-illustration";
 import {
   ProjectIllustration,
+  RagnarokPipeline,
   ZeroServerArchitecture,
   illustrationIds,
 } from "./project-illustrations";
@@ -21,6 +22,7 @@ const out: Record<string, string> = {
   hero: renderToStaticMarkup(<HeroIllustration />),
 };
 out["zeroserver-architecture"] = renderToStaticMarkup(<ZeroServerArchitecture />);
+out["ragnarok-pipeline"] = renderToStaticMarkup(<RagnarokPipeline />);
 for (const id of illustrationIds) {
   out[id] = renderToStaticMarkup(<ProjectIllustration id={id} />);
 }
