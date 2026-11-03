@@ -1,4 +1,9 @@
-export type IllustrationId = "ragnarok" | "datalab" | "aidron-ds" | "aidron-spa";
+export type IllustrationId =
+  | "zeroserver-control"
+  | "ragnarok"
+  | "datalab"
+  | "aidron-ds"
+  | "aidron-spa";
 
 const svgProps = {
   viewBox: "0 0 640 400",
@@ -148,9 +153,95 @@ function AidronSpa() {
   );
 }
 
-export const illustrationIds: IllustrationId[] = ["ragnarok", "datalab", "aidron-ds", "aidron-spa"];
+/** ZeroServer Control: a distributed mesh of nodes + the menu bar dropdown + a 24 h telemetry chart. */
+function ZeroServerControl() {
+  const nodes: [number, number][] = [[44, 96], [96, 66], [150, 108], [210, 74], [262, 116], [66, 160], [124, 180], [190, 152], [246, 190], [40, 214], [100, 232], [168, 220], [228, 240], [292, 152]];
+  const links: [number, number][] = [[0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [5, 6], [2, 7], [6, 7], [7, 8], [4, 8], [5, 9], [6, 10], [10, 11], [11, 7], [11, 12], [8, 12], [4, 13], [13, 8]];
+  const lit = [2, 3, 7, 8, 11];
+  const rows = [
+    { y: 122, dot: "fill-brand", name: 92, cpu: 0.55, ram: 0.4, disk: 0.25 },
+    { y: 170, dot: "fill-brand", name: 74, cpu: 0.82, ram: 0.62, disk: 0.3 },
+    { y: 218, dot: "fill-brand opacity-50", name: 104, cpu: 0.18, ram: 0.3, disk: 0.22 },
+    { y: 266, dot: "fill-muted-foreground opacity-60", name: 84, cpu: 0, ram: 0, disk: 0 },
+  ];
+  const line = "M46 336 L82 322 L118 328 L154 300 L190 312 L226 282 L262 296";
+  return (
+    <svg {...svgProps}>
+      <rect width="640" height="400" className="fill-muted" />
+      {/* the mesh */}
+      <g className="stroke-brand" strokeWidth="1" opacity="0.38">
+        {links.map(([a, b], i) => (
+          <line key={i} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]} />
+        ))}
+      </g>
+      {nodes.map(([x, y], i) => (
+        <g key={i}>
+          {lit.includes(i) ? <circle cx={x} cy={y} r="9" className="fill-brand" opacity="0.16" /> : null}
+          <circle cx={x} cy={y} r={lit.includes(i) ? 4.5 : 3} className={lit.includes(i) ? "fill-brand" : "fill-muted-foreground"} opacity={lit.includes(i) ? 1 : 0.7} />
+        </g>
+      ))}
+      {/* telemetry card */}
+      <rect x="28" y="262" width="262" height="110" rx="12" className="fill-card stroke-border" strokeWidth="1.5" />
+      <rect x="46" y="278" width="56" height="7" rx="3.5" className="fill-border" />
+      <path d={line + " L262 346 L46 346 Z"} className="fill-brand" opacity="0.14" />
+      <path d={line} fill="none" className="stroke-brand" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="262" cy="296" r="3.6" className="fill-brand" />
+      {/* menu bar */}
+      <rect x="0" y="0" width="640" height="34" className="fill-card" />
+      <rect x="0" y="33" width="640" height="1" className="fill-border" />
+      {[18, 70, 126, 170].map((x, i) => (
+        <rect key={i} x={x} y="12" width={i === 0 ? 10 : 36} height="9" rx="4.5" className="fill-border" />
+      ))}
+      <rect x="420" y="12" width="26" height="9" rx="4.5" className="fill-border" />
+      <rect x="456" y="12" width="20" height="9" rx="4.5" className="fill-border" />
+      <rect x="486" y="5" width="34" height="24" rx="6" className="fill-muted" />
+      <circle cx="503" cy="17" r="9" className="fill-brand" />
+      <rect x="499" y="12" width="8" height="10" rx="4" fill="none" stroke="#0a0a0a" strokeWidth="1.8" />
+      <circle cx="503" cy="17" r="1.4" fill="#0a0a0a" />
+      <rect x="532" y="12" width="26" height="9" rx="4.5" className="fill-border" />
+      <rect x="568" y="12" width="52" height="9" rx="4.5" className="fill-border" />
+      {/* dropdown */}
+      <rect x="338" y="44" width="282" height="332" rx="14" className="fill-card stroke-border" strokeWidth="1.5" />
+      <circle cx="362" cy="72" r="11" className="fill-brand" />
+      <rect x="358" y="66" width="8" height="12" rx="4" fill="none" stroke="#0a0a0a" strokeWidth="1.8" />
+      <rect x="382" y="63" width="92" height="9" rx="4.5" className="fill-foreground" opacity="0.8" />
+      <rect x="382" y="78" width="60" height="7" rx="3.5" className="fill-muted-foreground" opacity="0.5" />
+      <rect x="548" y="62" width="52" height="22" rx="11" className="fill-brand" opacity="0.2" />
+      <circle cx="562" cy="73" r="3.4" className="fill-brand" />
+      <rect x="570" y="70" width="22" height="6" rx="3" className="fill-brand" />
+      <rect x="354" y="100" width="250" height="1" className="fill-border" />
+      {rows.map((r, i) => (
+        <g key={i}>
+          <circle cx="364" cy={r.y + 10} r="5.5" className={r.dot} />
+          <rect x="380" y={r.y} width={r.name} height="9" rx="4.5" className="fill-foreground" opacity="0.78" />
+          <rect x="380" y={r.y + 16} width="58" height="6" rx="3" className="fill-muted-foreground" opacity="0.45" />
+          {[["cpu", r.cpu], ["ram", r.ram], ["disk", r.disk]].map(([k, v], j) => (
+            <g key={k as string}>
+              <rect x="484" y={r.y + 2 + j * 11} width="100" height="5" rx="2.5" className="fill-border" />
+              <rect x="484" y={r.y + 2 + j * 11} width={100 * (v as number)} height="5" rx="2.5" className="fill-brand" opacity={r.cpu === 0 ? 0 : 1} />
+            </g>
+          ))}
+          {i < rows.length - 1 ? <rect x="354" y={r.y + 38} width="250" height="1" className="fill-border" opacity="0.7" /> : null}
+        </g>
+      ))}
+      <rect x="354" y="322" width="118" height="34" rx="17" className="fill-muted" />
+      <rect x="376" y="336" width="74" height="7" rx="3.5" className="fill-muted-foreground" opacity="0.6" />
+      <rect x="484" y="322" width="120" height="34" rx="17" fill="none" className="stroke-brand" strokeWidth="1.6" />
+      <rect x="508" y="336" width="72" height="7" rx="3.5" className="fill-brand" />
+    </svg>
+  );
+}
+
+export const illustrationIds: IllustrationId[] = [
+  "zeroserver-control",
+  "ragnarok",
+  "datalab",
+  "aidron-ds",
+  "aidron-spa",
+];
 
 const map: Record<IllustrationId, () => JSX.Element> = {
+  "zeroserver-control": ZeroServerControl,
   ragnarok: Ragnarok,
   datalab: Datalab,
   "aidron-ds": AidronDS,

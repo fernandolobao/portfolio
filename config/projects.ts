@@ -12,9 +12,21 @@ export interface ProjectInterface {
   startDate: Date;
   endDate: Date;
   illustration: IllustrationId;
+  /** Public source repository (shown as a link on the card). */
+  repoLink?: string;
 }
 
 export const Projects: ProjectInterface[] = [
+  {
+    id: "zeroserver-control",
+    company: "ZeroServer",
+    category: ["Desktop"],
+    techStack: ["Swift", "SwiftUI", "Swift Charts", "GraphQL", "Keychain", "launchd", "GitHub Actions"],
+    startDate: new Date("2026-07-01"),
+    endDate: new Date("2026-08-01"),
+    illustration: "zeroserver-control",
+    repoLink: "https://github.com/zeroserver-cc/zsc-osx-app",
+  },
   {
     id: "ragnarok",
     company: "Lojas Renner",

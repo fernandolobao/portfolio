@@ -43,8 +43,9 @@ export const es: Dictionary = {
   work: {
     title: "Trabajos seleccionados",
     intro:
-      "Cuatro proyectos donde se encuentran el diseño y la ingeniería: dos design systems, una plataforma de decisión basada en datos y un sitio institucional.",
+      "Cinco proyectos donde se encuentran el diseño y la ingeniería: una app nativa para macOS, dos design systems, una plataforma de decisión basada en datos y un sitio institucional.",
     resultsLabel: "Resultados",
+    repoLabel: "Ver en GitHub",
   },
   about: {
     title: "Sobre mí",
@@ -67,6 +68,7 @@ export const es: Dictionary = {
     intro: "Desde un componente en Storybook hasta el pipeline de despliegue, pasando por la investigación con usuarios.",
     groups: {
       frontend: "Frontend",
+      native: "Apps nativas (macOS)",
       backend: "Backend y datos",
       infra: "Infraestructura y calidad",
       design: "Diseño y UX",
@@ -186,6 +188,18 @@ export const es: Dictionary = {
     awards: ["Hogarthiano del mes, Hogarth Worldwide"],
   },
   projects: {
+    "zeroserver-control": {
+      name: "ZeroServer Control",
+      role: "Creador · ZeroServer Community Cloud",
+      summary:
+        "App nativa de barra de menús para macOS de ZeroServer, la nube comunitaria brasileña: el agente de tu Mac y todos los nodos de tu cuenta a un clic, sin terminal ni pestaña de dashboard.",
+      results: [],
+      highlights: [
+        "Controla el agente local de este Mac y todos los nodos de la cuenta: estado en vivo, pausar, reanudar y detener, con CPU, RAM y disco de cada nodo.",
+        "Dashboard con telemetría de 24 horas en gráficos nativos (Swift Charts) y línea de tiempo de los eventos de cada nodo.",
+        "Hecha con los principios de ZeroServer: código abierto (MIT), credenciales solo en el Keychain, auditoría de seguridad con correcciones cubiertas por pruebas e interfaz en portugués e inglés.",
+      ],
+    },
     ragnarok: {
       name: "Ragnarök",
       role: "Design System Lead · Lojas Renner",

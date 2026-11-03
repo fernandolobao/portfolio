@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 import { StaticSvg } from "@/components/illustrations/static-svg";
 import { Section } from "@/components/site/section";
 import { Projects } from "@/config/projects";
@@ -76,6 +78,18 @@ export function Work({ dict }: { dict: Dictionary; locale: Locale }) {
                     ))}
                   </ul>
 
+                  {project.repoLink ? (
+                    <a
+                      href={project.repoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${dict.work.repoLabel}: ${text.name}`}
+                      className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 hover:underline"
+                    >
+                      {dict.work.repoLabel}
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  ) : null}
                 </div>
               </article>
             </li>

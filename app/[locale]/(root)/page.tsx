@@ -55,7 +55,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       { "@type": "CollegeOrUniversity", name: "Centro Universitário Ritter dos Reis (UniRitter)" },
     ],
     knowsLanguage: ["pt-BR", "en", "es", "it"],
-    knowsAbout: ["Software engineering", "Design systems", "UX design", "React", "TypeScript", "Web accessibility"],
+    knowsAbout: ["Software engineering", "Design systems", "UX design", "React", "TypeScript", "Web accessibility", "Swift", "SwiftUI"],
     sameAs: [SocialLinks.linkedin, SocialLinks.github, SocialLinks.lattes],
   };
 
