@@ -22,8 +22,8 @@
 
     --space-a: 240 70% 62%;
     --space-b: 280 60% 66%;
-    --space-alpha: 0.11;
-    --space-star-opacity: 0.5;
+    --space-alpha: 0.09;
+    --space-star-opacity: 0.45;
 
     --radius: 0.75rem;
   }
@@ -47,8 +47,8 @@
 
     --space-a: 232 80% 58%;
     --space-b: 268 70% 60%;
-    --space-alpha: 0.13;
-    --space-star-opacity: 1;
+    --space-alpha: 0.1;
+    --space-star-opacity: 0.9;
   }
 
   * {
@@ -142,7 +142,7 @@
     width: 150px;
     height: 1px;
     opacity: 0;
-    background: linear-gradient(270deg, hsl(var(--foreground) / 0.75), transparent);
+    background: linear-gradient(270deg, hsl(var(--foreground) / 0.55), transparent);
   }
 
   [data-motion="on"] .space-meteor {
@@ -175,7 +175,7 @@
     opacity: 0.1;
   }
   50% {
-    opacity: 0.85;
+    opacity: 0.65;
   }
 }
 
@@ -186,7 +186,7 @@
     transform: translate3d(0, 0, 0) rotate(-32deg);
   }
   93.5% {
-    opacity: 0.8;
+    opacity: 0.6;
   }
   100% {
     opacity: 0;
