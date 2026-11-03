@@ -12,6 +12,8 @@ export interface PublicationInterface {
   venue?: string;
   year: number;
   pages?: string;
+  /** Where to read it (repository / proceedings page). */
+  url?: string;
 }
 
 export const publications: PublicationInterface[] = [
@@ -26,14 +28,18 @@ export const publications: PublicationInterface[] = [
       "In: Van der Linden, J. C. S.; Scherdien, I.; Machado, L. (org.). Design, Cultura e Inovação: volume 4. Porto Alegre: Marcavisual",
     year: 2025,
     pages: "42–55",
+    url: "https://lume.ufrgs.br/handle/10183/301909",
   },
   {
     id: "protheses",
     kind: "event",
     title:
       "Evolução tecnológica das próteses: da antiguidade à integração biônica com interfaces neurais",
-    venue: "VI Congresso Brasileiro Interdisciplinar em Ciência e Tecnologia",
+    authors: "Camilotti, F.; Ribeiro, V. G.",
+    venue:
+      "Anais do VI Congresso Brasileiro Interdisciplinar em Ciência e Tecnologia. Even3",
     year: 2025,
+    url: "https://www.even3.com.br/anais/congresso-brasileiro-interdisciplinar-ciencia-tecnologia/1196501-evolucao-tecnologica-das-proteses--da-antiguidade-a-integracao-bionica-com-interfaces-neurais/",
   },
   {
     id: "moshpit",

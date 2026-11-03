@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 import { Section } from "@/components/site/section";
 import { education } from "@/config/education";
 import { publications } from "@/config/publications";
@@ -67,6 +69,18 @@ export function Education({ dict }: { dict: Dictionary }) {
                     <p className="mt-2 text-sm text-muted-foreground">
                       {dict.education.notes[pub.id]}
                     </p>
+                  ) : null}
+                  {pub.url ? (
+                    <a
+                      href={pub.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${dict.education.readPublication}: ${pub.title}`}
+                      className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-brand underline-offset-4 hover:underline"
+                    >
+                      {dict.education.readPublication}
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </a>
                   ) : null}
                 </li>
               ))}

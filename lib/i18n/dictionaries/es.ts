@@ -164,13 +164,14 @@ export const es: Dictionary = {
       },
     },
     publicationsTitle: "Publicaciones y producción",
+    readPublication: "Leer publicación",
     kinds: {
       chapter: "Capítulo de libro",
-      event: "Congreso",
+      event: "Trabajo en congreso",
       website: "Sitio web",
     },
     notes: {
-      protheses: "Participación en el congreso.",
+      protheses: "Trabajo completo publicado en las actas.",
       moshpit: "Reseñas de álbumes musicales.",
     },
     certificationsTitle: "Certificaciones",
