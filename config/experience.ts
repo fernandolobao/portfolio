@@ -20,7 +20,7 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2026-04-01"),
     endDate: "Present",
     featured: true,
-    skills: [],
+    skills: ["TypeScript", "React", "Next.js", "Node.js", "GraphQL", "GrowthBook", "Playwright", "Cypress"],
   },
   {
     id: "aidron",

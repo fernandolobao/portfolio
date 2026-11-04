@@ -90,7 +90,17 @@ export const en: Dictionary = {
     intro: "15+ years across software engineering, interface design and UX/UI leadership.",
     earlierTitle: "Earlier",
     items: {
-      solvd: { position: "Full Stack Engineer" },
+      solvd: {
+        position: "Full Stack Engineer",
+        summary:
+          "Full stack development of customer-facing web products, from React and Next.js frontends to Node.js services, focused on purchase flows, accessibility and quality.",
+        bullets: [
+          "Builds customer flows from scaffold to backend integration (multi-step renewal, questionnaires, post-purchase upsell) and runs checkout experiments with feature flags and A/B tests, cleaning up flags and dead code afterwards.",
+          "Built a shared library that gives each person a persistent identifier that survives Safari's tracking prevention, and connected it to session replay, monitoring and experimentation across several apps.",
+          "Fixes WCAG 2.2 AA accessibility issues (keyboard, modal focus, screen readers) and wrote the team's accessibility standards, with an audit tool, so new UI is accessible from the start.",
+          "Writes unit, integration and end-to-end tests (Jest, Cypress, Playwright), chases flaky tests, fixes dependency vulnerabilities with minimal changes and looks after developer experience (local HTTPS, runbooks, shared automations).",
+        ],
+      },
       aidron: {
         position: "Head of UX/UI",
         location: "Porto Alegre, Brazil",

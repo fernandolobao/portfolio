@@ -90,7 +90,17 @@ export const ptBR: Dictionary = {
     intro: "Mais de 15 anos entre engenharia de software, design de interfaces e liderança de UX/UI.",
     earlierTitle: "Antes",
     items: {
-      solvd: { position: "Full Stack Engineer" },
+      solvd: {
+        position: "Full Stack Engineer",
+        summary:
+          "Desenvolvimento full stack de produtos web voltados a clientes, do frontend em React e Next.js a serviços em Node.js, com foco em fluxos de compra, acessibilidade e qualidade.",
+        bullets: [
+          "Constrói fluxos de cliente do esqueleto à integração com o backend (renovação em várias etapas, questionários, upsell pós-compra) e conduz experimentos de checkout com feature flags e testes A/B, limpando flags e código morto ao final.",
+          "Criou uma biblioteca compartilhada que dá a cada pessoa um identificador persistente, resistente à prevenção de rastreamento do Safari, e a conectou a replay de sessão, monitoramento e experimentação em vários apps.",
+          "Corrige problemas de acessibilidade WCAG 2.2 AA (teclado, foco em modais, leitores de tela) e escreveu os padrões de acessibilidade do time, com uma ferramenta de auditoria, para a UI nova já nascer acessível.",
+          "Escreve testes unitários, de integração e e2e (Jest, Cypress, Playwright), combate testes instáveis, corrige vulnerabilidades de dependências com mudanças mínimas e cuida da experiência de desenvolvimento (HTTPS local, runbooks, automações compartilhadas).",
+        ],
+      },
       aidron: {
         position: "Chefe de UX/UI",
         location: "Porto Alegre, RS",
