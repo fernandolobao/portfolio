@@ -93,12 +93,12 @@ export const es: Dictionary = {
       solvd: {
         position: "Full Stack Engineer",
         summary:
-          "Desarrollo full stack de productos web orientados a clientes, desde frontends en React y Next.js hasta servicios en Node.js, con foco en flujos de compra, accesibilidad y calidad.",
+          "Desarrollo full stack de productos web para el cliente final, desde frontends en React y Next.js hasta servicios en Node.js, con foco en flujos de compra, accesibilidad y calidad.",
         bullets: [
-          "Construye flujos de cliente desde el esqueleto hasta la integración con el backend (renovación en varios pasos, cuestionarios, upsell posventa) y conduce experimentos de checkout con feature flags y pruebas A/B, limpiando flags y código muerto al final.",
-          "Creó una biblioteca compartida que da a cada persona un identificador persistente, resistente a la prevención de rastreo de Safari, y la conectó a replay de sesiones, monitoreo y experimentación en varias apps.",
-          "Corrige problemas de accesibilidad WCAG 2.2 AA (teclado, foco en modales, lectores de pantalla) y escribió los estándares de accesibilidad del equipo, con una herramienta de auditoría, para que la UI nueva nazca accesible.",
-          "Escribe pruebas unitarias, de integración y e2e (Jest, Cypress, Playwright), combate pruebas inestables, corrige vulnerabilidades de dependencias con cambios mínimos y cuida la experiencia de desarrollo (HTTPS local, runbooks, automatizaciones compartidas).",
+          "Construye flujos de cliente desde cero hasta la integración con el backend (renovación en varios pasos, cuestionarios, upsell posventa) y conduce experimentos de checkout con feature flags y pruebas A/B, eliminando las flags y el código muerto cuando termina la prueba.",
+          "Creó una biblioteca compartida que asigna a cada persona un identificador persistente, incluso con la protección contra rastreo de Safari, y la integró con replay de sesiones, monitoreo y experimentación en varias apps.",
+          "Corrige problemas de accesibilidad (WCAG 2.2 AA), como navegación por teclado, foco en modales y texto para lectores de pantalla, y escribió los estándares de accesibilidad del equipo, con una herramienta de auditoría, para que toda interfaz nueva nazca accesible.",
+          "Escribe y mantiene pruebas unitarias, de integración y end-to-end (Jest, Cypress, Playwright), resuelve pruebas inestables, corrige vulnerabilidades en dependencias con cambios mínimos y mejora la experiencia de desarrollo (HTTPS local, runbooks, automatizaciones compartidas).",
         ],
       },
       aidron: {
