@@ -12,8 +12,8 @@ const SRC = {
 /**
  * Cinematic hero backdrop: a pre-rendered loop (triangular black hole at the
  * end of a glass tunnel). A lightweight poster (frame 0) is the real image and
- * paints immediately; the video is attached on the first interaction (or after
- * 8 s) and fades in over the identical first frame. It is skipped for reduced motion, Save-Data,
+ * paints immediately; the video is attached ~1.5 s after the page loads (or earlier on the
+ * first interaction) and fades in over the identical first frame. It is skipped for reduced motion, Save-Data,
  * hidden tabs and browsers without GPU acceleration. Decorative: hidden from assistive tech.
  */
 export function HeroMedia() {
@@ -43,9 +43,10 @@ export function HeroMedia() {
       el.play().catch(() => {});
     };
 
-    // Arm on the first interaction (or after 8 s) so the probe and the
-    // download stay off the initial load; software-rendered browsers (and lab
-    // tools) keep the still poster, which is the video's first frame.
+    // Start shortly after the page has loaded (or earlier, on the first
+    // interaction) so the probe and the download stay off the critical load.
+    // Browsers without GPU acceleration (and lab tools) keep the still poster,
+    // which is the video's first frame.
     const events = ["pointermove", "pointerdown", "scroll", "keydown", "touchstart"] as const;
     let timer = 0;
     const arm = () => {
@@ -65,11 +66,18 @@ export function HeroMedia() {
       attach();
     };
     events.forEach((e) => window.addEventListener(e, arm, { passive: true }));
-    timer = window.setTimeout(arm, 8000);
+
+    const AUTOPLAY_DELAY_MS = 1500;
+    const schedule = () => {
+      timer = window.setTimeout(arm, AUTOPLAY_DELAY_MS);
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
 
     return () => {
       cancelled = true;
       window.clearTimeout(timer);
+      window.removeEventListener("load", schedule);
       events.forEach((e) => window.removeEventListener(e, arm));
     };
   }, []);
