@@ -215,7 +215,7 @@ export const ptBR: Dictionary = {
         "App nativo de barra de menus para macOS da ZeroServer, a nuvem comunitária brasileira: o agente do seu Mac e todos os nós da sua conta a um clique, sem terminal nem aba de dashboard.",
       results: [],
       highlights: [
-        "Controla o agente local deste Mac e todos os nós da conta: status ao vivo, pausar, retomar e parar, com CPU, RAM e disco de cada nó.",
+        "Controle do agente local deste Mac e de todos os nós da conta: status ao vivo, pausar, retomar e parar, com CPU, RAM e disco de cada nó.",
         "Dashboard com telemetria de 24 horas em gráficos nativos (Swift Charts) e linha do tempo dos eventos de cada nó.",
         "Feito com os princípios da ZeroServer: código aberto (MIT), credenciais só no Keychain, auditoria de segurança com correções cobertas por testes e interface em português e inglês.",
       ],
