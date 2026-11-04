@@ -95,10 +95,10 @@ export const es: Dictionary = {
         summary:
           "Desarrollo full stack de productos web para el cliente final, desde frontends en React y Next.js hasta servicios en Node.js, con foco en flujos de compra, accesibilidad y calidad.",
         bullets: [
-          "Construye flujos de cliente desde cero hasta la integración con el backend (renovación en varios pasos, cuestionarios, upsell posventa) y conduce experimentos de checkout con feature flags y pruebas A/B, eliminando las flags y el código muerto cuando termina la prueba.",
-          "Creó una biblioteca compartida que asigna a cada persona un identificador persistente, incluso con la protección contra rastreo de Safari, y la integró con replay de sesiones, monitoreo y experimentación en varias apps.",
-          "Corrige problemas de accesibilidad (WCAG 2.2 AA), como navegación por teclado, foco en modales y texto para lectores de pantalla, y escribió los estándares de accesibilidad del equipo, con una herramienta de auditoría, para que toda interfaz nueva nazca accesible.",
-          "Escribe y mantiene pruebas unitarias, de integración y end-to-end (Jest, Cypress, Playwright), resuelve pruebas inestables, corrige vulnerabilidades en dependencias con cambios mínimos y mejora la experiencia de desarrollo (HTTPS local, runbooks, automatizaciones compartidas).",
+          "Flujos de cliente y experimentación: construcción de flujos desde cero hasta la integración con el backend (renovación en varios pasos, cuestionarios, upsell posventa) y experimentos de checkout con feature flags y pruebas A/B, con eliminación de las flags y del código muerto al terminar cada prueba.",
+          "Identidad y analytics: biblioteca compartida que asigna a cada persona un identificador persistente, incluso con la protección contra rastreo de Safari, integrada con replay de sesiones, monitoreo y experimentación en varias apps.",
+          "Accesibilidad: corrección de problemas de WCAG 2.2 AA (navegación por teclado, foco en modales, texto para lectores de pantalla) y estándares de accesibilidad del equipo, con una herramienta de auditoría, para que toda interfaz nueva nazca accesible.",
+          "Calidad y confiabilidad: pruebas unitarias, de integración y end-to-end (Jest, Cypress, Playwright), corrección de pruebas inestables y de vulnerabilidades en dependencias con cambios mínimos, además de la experiencia de desarrollo (HTTPS local, runbooks, automatizaciones compartidas).",
         ],
       },
       aidron: {
