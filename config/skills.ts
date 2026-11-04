@@ -12,7 +12,7 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
     id: "frontend",
     skills: [
       "React", "Next.js", "TypeScript", "JavaScript", "HTML 5", "CSS 3", "Sass",
-      "Tailwind CSS", "styled-components", "Redux", "Material UI", "Ant Design",
+      "Tailwind CSS", "styled-components", "Emotion", "CSS Modules", "Redux", "Material UI", "Ant Design",
       "Bootstrap", "GSAP", "Storybook", "Webpack",
     ],
   },
@@ -26,7 +26,7 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
   {
     id: "backend",
     skills: [
-      "Node.js", "Express.js", "Nest.js", "GraphQL", "MongoDB", "PostgreSQL",
+      "Node.js", "Express.js", "Nest.js", "GraphQL", "Apollo", "MongoDB", "PostgreSQL",
       "MySQL", "Redis", "Prisma", "Python", "Flask", "PHP", "Drupal",
       "WordPress", "Strapi",
     ],
@@ -35,7 +35,7 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
     id: "infra",
     skills: [
       "AWS", "Azure", "Docker", "Kubernetes", "Jenkins", "CI/CD", "Git", "GitHub",
-      "Jest", "Cypress", "Testing Library", "SonarQube", "GitHub Actions", "Shell scripting",
+      "Jest", "Cypress", "Playwright", "Testing Library", "SonarQube", "GitHub Actions", "Shell scripting",
     ],
   },
   {
@@ -43,14 +43,14 @@ export const skillGroups: { id: SkillGroupId; skills: string[] }[] = [
     skills: [
       "Design Systems", "Design Tokens", "Figma", "UX Research", "Usability Testing",
       "Information Architecture", "Interaction Design", "Prototyping",
-      "Wireframing", "User Flows", "Accessibility", "Miro", "Design Thinking",
+      "Wireframing", "User Flows", "Accessibility", "WCAG 2.2", "Miro", "Design Thinking",
     ],
   },
   {
     id: "process",
     skills: [
       "DesignOps", "Scrum", "Technical Documentation", "Code Review", "Mentoring",
-      "Multidisciplinary Teams", "Internationalization (i18n)", "Security audits", "Arduino",
+      "Multidisciplinary Teams", "A/B Testing", "Feature Flags", "Internationalization (i18n)", "Security audits", "Arduino",
     ],
   },
 ];
